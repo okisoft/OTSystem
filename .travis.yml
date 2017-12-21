@@ -7,9 +7,10 @@ branches:
   only:
     - develop
 
-cashe:
+cache:
    directories:
      - vendor/bundle
+     - /home/travis/.rvm/
 
 before_script:
   - bin/rails db:create

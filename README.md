@@ -21,5 +21,5 @@ $ bundle install --path vendor/bundle
 * 正しく動いているかの確認
 
 ```
-bundle exec rails s
+$ bundle exec rails s
 ```
