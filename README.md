@@ -1,24 +1,25 @@
-# README
+[![Build Status](https://travis-ci.org/okisoft/OTSystem.svg?branch=develop)](https://travis-ci.org/okisoft/OTSystem)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# OTSystem
 
-Things you may want to cover:
+### 初期設定
 
-* Ruby version
+* `ruby -v`でruby のバージョンが`2.4.3`であるかを確認する
 
-* System dependencies
+* bundler のインストール
 
-* Configuration
+```
+$ gem install bundler
+```
 
-* Database creation
+* Gemfileがあるレポジトリで以下を実行
 
-* Database initialization
+```
+$ bundle install --path vendor/bundle
+```
 
-* How to run the test suite
+* 正しく動いているかの確認
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+bundle exec rails s
+```
