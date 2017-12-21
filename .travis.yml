@@ -8,7 +8,8 @@ branches:
     - develop
 
 cashe:
-  directories: vendor/bundler
+   directories:
+     - vendor/bundle
 
 before_script:
   - bin/rails db:create
