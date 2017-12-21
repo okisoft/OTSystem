@@ -1,0 +1,22 @@
+language: ruby
+
+rvm:
+  - 2.4.3
+
+branches:
+  only:
+    - develop
+
+cashe:
+  directories: vendor/bundler
+
+before_script:
+  - bin/rails db:create
+  - bin/rails db:migrate
+
+script:
+  - bin/rails test
+
+notifications:
+  slack:
+    secure: lt3oyybVFTAf/eUN6XUpv73hRBzvDUaIWsNpccRUPZ1pqVSCUChrcxpoA2YeYGIILNVYaK4PIWIg4NkcVEe4+GOyiaTf3uZLXq6LxlvPtpW5tIU5Jc23pQaiFbKS9ZzKQzKPrbIQIm/QZFwo44TFVoCm7xs7pV3jOYuTgXxiisOgrABMd9/Wbkf7qsT/FyeJ5i0y+49rfKiikrpnkxlJtROq5hgFN7pB7T2vecraMAVXmD3CDlqeqO49wF6Eic2MrmLg2wwZLJNuF7V8V88GKIswlOM4ZoZAV8YvzDLYFPNTFHJtz5TM7JeF8zWHRtSAVdmMb6ADms7uAdfAnFM60CbQhAQJbRo2mvdhaiXPckKj/7jJ6Oo/FVLpaRW3zqQHJORWE0Mxd+xkpbUA13wjAJrBPyzpBuaPhpKS/g5poGaKszfRxRdobTUxp5h+YSaIq8Nig5svNO7FH/VCeSFEj6cFKKYPQ7PHv0NOqlBcxMtiDxRyOoONsULH0tz08Xeckx9Nlpkm0AzGfmffOrHjhczOoqZgznJWO5gRmf4VqpT/jT2+pX6BkWsJKk6RcA24ih0pg8NAjNJ+jKvFrbqj9OcZNNef+gusRR2S0aj2ndAfostaEf80gyg+Fpm+YtLAq2gdF5XYHv9Ia0cezCHO7laDLHP+t9rQ3c5gPBw9NtM=
