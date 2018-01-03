@@ -36,6 +36,10 @@ gem 'jbuilder', '~> 2.5'
 # Use travis at CI
 gem 'travis'
 
+# Use Bootstrap as the framework
+gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'jquery-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
