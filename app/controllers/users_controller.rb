@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user.authority = 1
     if @user.save
       flash[:success] = "登録しました"
-      # redirect_to @user
+      # redirect_to login_path
     else
       render 'new'
     end
