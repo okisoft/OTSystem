@@ -1,6 +1,15 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
+  test "セッションがない場合は/loginへリダイレクトすること" do
+    # /assignでのリクエスト時
+    assert false
+    # /homeでのリクエスト時
+    assert false
+    # /adminでのリクエスト時
+    assert false
+  end
+
   # /assignでのリクエスト時
   test "ユーザがログインしている場合は/homeへリダイレクトすること" do
     assert false
@@ -10,16 +19,8 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert false
   end
 
-  test "セッションがない場合は/loginへリダイレクトすること" do
-    assert false
-  end
-
   # /homeでのリクエスト時
-  test "セッションがない場合はログイン画面を表示すること" do
-    assert false
-  end
-
-  test "管理者がログインしている場合は管理者用ホーム画面を表示すること" do
+  test "管理者がログインしている場合は404を表示すること" do
     assert false
   end
 
@@ -40,10 +41,6 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   # /adminでのリクエスト時
-  test "セッションがない場合はログイン画面を表示すること" do
-    assert false
-  end
-
   test "管理者がログインしている場合は管理者用ホーム画面を表示すること" do
     assert false
   end
