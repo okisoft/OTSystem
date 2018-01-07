@@ -1,0 +1,2 @@
+class LectureTime < ApplicationRecord
+end

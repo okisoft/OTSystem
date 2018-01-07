@@ -1,0 +1,2 @@
+class LectureYear < ApplicationRecord
+end
