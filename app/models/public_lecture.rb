@@ -1,5 +1,5 @@
 class PublicLecture < ApplicationRecord
-  belongs_to :User, required: false
-  belongs_to :Lecture, required: false
-  belongs_to :LectureTime, required: false
+  belongs_to :user, required: false
+  belongs_to :lecture, required: false
+  belongs_to :lecture_time, required: false
 end

@@ -37,14 +37,14 @@ ActiveRecord::Schema.define(version: 20180110011307) do
   end
 
   create_table "public_lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "User_id"
-    t.bigint "Lecture_id"
-    t.bigint "LectureTime_id"
+    t.bigint "user_id"
+    t.bigint "lecture_id"
+    t.bigint "lecture_time_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["LectureTime_id"], name: "index_public_lectures_on_LectureTime_id"
-    t.index ["Lecture_id"], name: "index_public_lectures_on_Lecture_id"
-    t.index ["User_id"], name: "index_public_lectures_on_User_id"
+    t.index ["lecture_id"], name: "index_public_lectures_on_lecture_id"
+    t.index ["lecture_time_id"], name: "index_public_lectures_on_lecture_time_id"
+    t.index ["user_id"], name: "index_public_lectures_on_user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
