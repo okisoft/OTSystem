@@ -1,3 +1,4 @@
 class LectureYear < ApplicationRecord
-  has_many :lecturetimes
+  belongs_to :lecture
+  has_many :lecture_times
 end

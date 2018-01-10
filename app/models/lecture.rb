@@ -1,3 +1,3 @@
 class Lecture < ApplicationRecord
-  has_many :lectureyears
+  has_many :lecture_years
 end
