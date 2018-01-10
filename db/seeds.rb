@@ -27,15 +27,26 @@ puts "Make LectureTime"
   end
 end
 
-puts "Make PublicLecture"
+puts "Make User"
 admin = User.create(
   user_id: "admin",
   name: "user admin",
   authority: 1,
+  password: "password",
   password_digest: User.digest("password")
 )
-public_lecture = Lecture.last
+(1..5).each do |i|
+  User.create(
+    user_id: "user#{i}",
+    name: "user name#{i}",
+    authority: 3,
+    password: "password",
+    password_digest: User.digest("password")
+  )
+end
 
+puts "Make PublicLecture"
+public_lecture = Lecture.last
 PublicLecture.create(
   user_id: admin.id,
   lecture_id: public_lecture.id,
