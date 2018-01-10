@@ -14,6 +14,10 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  def admin?
+    self.authority == 1
+  end
+
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost

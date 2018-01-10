@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
+
   def new
-    # @TODO rootでリクエストがきた時の処理
+    redirect_to root_path if logged_in?
   end
 
   def create
@@ -8,7 +10,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:sessions][:password])
       log_in user
       flash[:success] = "ログインしました"
-      # @TODO リダイレクト処理
+      if user.admin?
+        redirect_to admin_path
+      else
+        redirect_to home_path
+      end
     else
       flash.now[:danger] = 'パスワードかユーザIDが違います'
       render 'new'
