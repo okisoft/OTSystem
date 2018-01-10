@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  User: one
+  Lecture: one
+  LectureTime: one
+
+two:
+  User: two
+  Lecture: two
+  LectureTime: two
