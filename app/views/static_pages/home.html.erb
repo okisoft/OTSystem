@@ -1,8 +1,9 @@
 <% provide(:title, 'ホーム画面') %>
 <h1>ホーム画面</h1>
 
-<ul>
-  <li>
-    <%= link_to "Settings Profile", edit_user_path(current_user) %>
-  </li>
-</ul> 
+<li>
+  <%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary" %>
+</li>
+<li>
+  <%= link_to "ログアウト", log_out, class: "btn btn-primary" %>
+</li>
