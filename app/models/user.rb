@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :students
+  has_many :lecture_years, through: :students
+
   validates :user_id,     presence: true,
                           length: { maximum: 255 },
                           uniqueness: true

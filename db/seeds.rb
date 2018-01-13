@@ -52,3 +52,11 @@ PublicLecture.create(
   lecture_id: public_lecture.id,
   lecture_time_id: public_lecture.lecture_years.last.lecture_times.last.id
 )
+
+puts "Make Student"
+user_id = User.find_by(authority: 3).id
+lecture_year_id = PublicLecture.first.lecture_time.lecture_year.id
+Student.create(
+  user_id: user_id,
+  lecture_year_id: lecture_year_id
+)
