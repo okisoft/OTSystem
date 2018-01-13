@@ -58,4 +58,10 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
+
+  test "paswaordとpassword_confirmationが一致してなければ無効であること" do
+    @user.password = "a" * 6
+    @user.password_confirmation = "b" * 6
+    assert_not @user.valid?
+  end
 end
