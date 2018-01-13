@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   skip_before_action :require_login, only: [:new, :create]
 
@@ -44,13 +43,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:user_id, :name, :password, :password_confirmation)
-    end
-
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "ログインしてください"
-        redirect_to login_url
-      end
     end
 
     def correct_user
