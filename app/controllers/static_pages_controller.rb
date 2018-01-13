@@ -17,5 +17,7 @@ class StaticPagesController < ApplicationController
 
   def admin
     render_404 unless current_user.admin?
+
+    @lectures = Lecture.all
   end
 end

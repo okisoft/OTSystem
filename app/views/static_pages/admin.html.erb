@@ -1,2 +1,10 @@
-<% provide(:title, '管理画面') %>
-<h1>管理画面</h1>
+<% provide(:title, 'All lectures') %>
+<h1>All lectures</h1>
+
+<ul class="lectures">
+  <% @lectures.each do |lecture| %>
+    <li>
+      <%= link_to lecture.name, lecture %>
+    </li>
+  <% end %>
+</ul>
