@@ -28,7 +28,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if !@user.authenticate(params[:user][:current_password])
+      @user.errors.add(:current_password, "is incorrect")
+      render 'edit'
+    elsif @user.update_attributes(user_params)
       if @user.admin?
         redirect_to admin_path
       else
