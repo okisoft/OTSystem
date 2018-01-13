@@ -18,3 +18,5 @@
 
 .byebug_history
 /vendor/bundle
+
+/config/database.yml
