@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     render file: '/public/404.html', status: 404, layout: 'application', content_type: 'text/html'
   end
 
+  def render_not_open
+    render file: '/public/not_open.html', status: 200, layout: 'application', content_type: 'text/html'
+  end
+
   private
     def require_login
       unless logged_in?

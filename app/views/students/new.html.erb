@@ -1,0 +1,8 @@
+<% provide(:title, "授業登録画面") %>
+<h1>授業登録画面</h1>
+
+<%= form_for(:students, url: students_path) do |f| %>
+  <%= f.hidden_field :cerf, value: "yes" %>
+
+  <%= f.submit "登録する", class: "btn btn-primary" %>
+<% end %>
