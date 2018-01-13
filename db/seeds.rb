@@ -15,7 +15,7 @@ puts "Make LectureYear"
 (1..5).each do |i|
   lecture_id = Lecture.find(i).id
   (1..5).each do |j|
-    LectureYear.create(lecture_id: lecture_id, year: 2010 + j, style: 1)\
+    LectureYear.create(lecture_id: lecture_id, year: 2010 + j, style: "個人")
   end
 end
 

@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 20180110011307) do
 
   create_table "lecture_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "lecture_year_id"
-    t.integer "time"
+    t.bigint "lecture_year_id", null: false
+    t.integer "time", null: false
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -22,16 +22,16 @@ ActiveRecord::Schema.define(version: 20180110011307) do
   end
 
   create_table "lecture_years", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "lecture_id"
-    t.integer "year"
-    t.integer "style"
+    t.bigint "lecture_id", null: false
+    t.integer "year", null: false
+    t.string "style", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lecture_id"], name: "index_lecture_years_on_lecture_id"
   end
 
   create_table "lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,4 +58,7 @@ ActiveRecord::Schema.define(version: 20180110011307) do
 
   add_foreign_key "lecture_times", "lecture_years"
   add_foreign_key "lecture_years", "lectures"
+  add_foreign_key "public_lectures", "lecture_times"
+  add_foreign_key "public_lectures", "lectures"
+  add_foreign_key "public_lectures", "users"
 end
