@@ -13,6 +13,7 @@ class StaticPagesController < ApplicationController
 
   def home
     render_404 if current_user.admin?
+    @users = User.all
   end
 
   def admin
