@@ -1,0 +1,4 @@
+public_lecture:
+  user: user
+  lecture: lecture
+  lecture_time: lecture_time
