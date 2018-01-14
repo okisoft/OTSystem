@@ -82,3 +82,39 @@ Student.create(
   user_id: user_id,
   lecture_year_id: lecture_year_id
 )
+
+puts "Make Progress"
+user_id = User.find_by(authority: 3).id
+lecture__year_id = PublicLecture.first.lecture_time.lecture_year.id
+Progress.create(
+  lecture_year_id: lecture__year_id,
+  user_id: user_id,
+  group_id: group_id,
+  icon: 1
+)
+
+puts "Achievment"
+progess_id = Progess.find(1).id
+problem_id = Problem.find(1).id
+Achievment.create(
+  user_id: progess_id
+  group_id: progess_id
+  problem: problem_id
+)
+
+puts "Group"
+(1..5).each do |i|
+  lecture__year_id = LectureYear.find(i).id
+  Group.create(
+    name: "group#{i}",
+    lecture_year_id: lecture__year_id
+  )
+end
+
+puts "GroupMember"
+group_id = Group.find(1).id
+user_id = User.find_by(authority: 3).id
+GroupMember.create(
+  group_id: group_id
+  user_id: user_id
+)
