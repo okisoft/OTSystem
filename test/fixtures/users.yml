@@ -1,0 +1,5 @@
+user:
+  user_id: "user"
+  name: "example user"
+  authority: 1,
+  password_digest: <%= User.digest('password') %>
