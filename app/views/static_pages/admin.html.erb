@@ -1,6 +1,7 @@
 <% provide(:title, '管理画面') %>
 <h1>管理画面</h1>
 
+<%= link_to "授業新規作成", new_lecture_path, class: "btn btn-primary" %>
 <%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary" %>
 <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
 

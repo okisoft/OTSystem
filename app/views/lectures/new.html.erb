@@ -1,0 +1,18 @@
+<% provide(:title, '授業新規作成') %>
+<h1>授業作成画面</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@lecture, url: new_lecture_path) do |f| %>
+      <%= f.label :name, "授業名" %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.fields_for :lecture_years do |i| %>
+        <%= i.label :style, "授業形態" %>
+        <%= i.select :style, [["個人", "個人"], ["グループ", "グループ"]], class: 'form-control' %>
+      <% end %>
+
+      <%= f.submit "Create lecture", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>oesources :lectures, only: [:show]
