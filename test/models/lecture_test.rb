@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LectureTest < ActiveSupport::TestCase
   def setup
-    @lecture = Lecture.new(name: "software")
+    @lecture = lectures(:lecture)
   end
 
   test "有効であること" do

@@ -2,14 +2,7 @@ require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
   def setup
-    user = User.new(user_id: "user", name: "example user", authority: 1,
-                     password: "hogehoge", password_confirmation: "hogehoge")
-    user.save
-    lecture = Lecture.new(name: "software")
-    lecture.save
-    lecture_year = LectureYear.new(lecture_id: lecture.id, year: 2018, style: "個人")
-    lecture_year.save
-    @student = Student.new(user_id: user.id, lecture_year_id: lecture_year.id)
+    @student = students(:student)
   end
 
   test "有効であること" do
@@ -37,6 +30,7 @@ class StudentTest < ActiveSupport::TestCase
   end
 
   test "authority に学生以外の権限レベルが入っていれば無効であること" do
-    assert false
+    @student.user_id = users(:admin).id
+    assert_not @student.valid?
   end
 end

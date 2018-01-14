@@ -3,11 +3,11 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new(user_id: "user", name: "example user", authority: 1,
-                     password: "hogehoge", password_confirmation: "hogehoge")
+    @user = users(:user)
   end
 
   test "有効であること" do
+    @user.password = "password"
     assert @user.valid?
   end
 

@@ -2,9 +2,7 @@ require 'test_helper'
 
 class LectureYearTest < ActiveSupport::TestCase
   def setup
-    lecture = Lecture.new(name: "software")
-    lecture.save
-    @lecture_year = LectureYear.new(lecture_id: lecture.id, year: 2018, style: "個人")
+    @lecture_year = lecture_years(:lecture_year)
   end
 
   test "有効であること" do
