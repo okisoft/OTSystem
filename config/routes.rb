@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post    '/login',   to: 'sessions#create'
   delete  '/logout',  to: 'sessions#destroy'
   resources :users, only: [:create, :new, :edit, :update]
+  resources :students, only: [:create, :new]
   resources :lectures, only: [] do
     member do
       get :years
