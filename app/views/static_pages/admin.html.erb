@@ -1,10 +1,11 @@
 <% provide(:title, '管理画面') %>
 <h1>管理画面</h1>
 
-<ul class="lectures">
-  <% @lectures.each do |lecture| %>
-    <li>
-      <%= link_to lecture.name, lecture %>
-    </li>
-  <% end %>
-</ul>
+<%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary" %>
+<%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
+
+<% @lectures.each do |lecture| %>
+  <li>
+    <%= link_to lecture.name, times_lecture_path(lecture) %>
+  </li>
+<% end %>
