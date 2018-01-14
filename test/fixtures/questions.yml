@@ -1,17 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  problem: one
-  user_name: MyString
-  group_name: MyString
-  content: MyText
-  reply: MyString
-  visible: false
-
-two:
-  problem: two
-  user_name: MyString
-  group_name: MyString
-  content: MyText
-  reply: MyString
-  visible: false
+question:
+  problem: problem
+  user_name: "nonaka"
+  group_name: "OTsystem"
+  content: "わからん"
+  reply: "わからんわかる"
+  visible: true

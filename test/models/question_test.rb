@@ -2,16 +2,7 @@ require 'test_helper'
 
 class QuestionTest < ActiveSupport::TestCase
   def setup
-    lecture = Lecture.new(name: "software")
-    lecture.save
-    lecture_year = LectureYear.new(lecture_id: lecture.id, year: 2018, style: "個人")
-    lecture_year.save
-    lecture_time = LectureTime.new(lecture_year_id: lecture_year.id, time: 1, title: "ソフ工")
-    lecture_time.save
-    problem = Problem.new(lecture_time_id: lecture_time.id, name: "レビュ表", content: "レビュを書く")
-    problem.save
-    @question = Question.new(problem_id: problem.id, user_name: "nonaka", group_name: "OTsystem",
-                              content: "わからん", reply: "わからんわかる", visible: 1)
+    @question = questions(:question)
   end
 
   test "有効であること" do
