@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.authority = 3
+    if !current_user.nil? && current_user.admin?
+      @user = User.new(admin_params)
+    end
     if @user.save
       flash[:success] = "登録しました"
       log_in @user
@@ -28,10 +31,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    update_params = user_params
+    update_params = admin_params if @user.admin?
     if !@user.authenticate(params[:user][:current_password])
       @user.errors.add(:current_password, "is incorrect")
       render 'edit'
-    elsif @user.update_attributes(user_params)
+    elsif @user.update_attributes(update_params)
       if @user.admin?
         redirect_to admin_path
       else
@@ -46,6 +51,10 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:user_id, :name, :password, :password_confirmation)
+    end
+
+    def admin_params
+      params.require(:user).permit(:user_id, :name, :authority, :password, :password_confirmation)
     end
 
     def correct_user
