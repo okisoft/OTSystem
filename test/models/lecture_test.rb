@@ -14,7 +14,7 @@ class LectureTest < ActiveSupport::TestCase
     assert_not @lecture.valid?
   end
 
-  test "name が複数あれば無効であること" do
+  test "name がユニークでないならば無効であること" do
     dup_name = @lecture.dup
     @lecture.save
     assert_not dup_name.valid?
