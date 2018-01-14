@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionDispatch::IntegrationTest
+class UsersControllerTest < ActionController::TestCase
   test "ユーザ作成ページを表示すること" do
     get signup_path
     assert_response :success
