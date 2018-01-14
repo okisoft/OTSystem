@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lecture_time: one
+  user: one
+  group: one
+  icon: 1
+
+two:
+  lecture_time: two
+  user: two
+  group: two
+  icon: 1
