@@ -25,7 +25,7 @@ class ProblemTest < ActiveSupport::TestCase
   end
 
   test "name が長ければ無効であること" do
-    @problem.name = "a" * 33
+    @problem.name = "a" * 9
     assert_not @problem.valid?
   end
 
