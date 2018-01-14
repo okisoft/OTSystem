@@ -3,17 +3,17 @@ class User < ApplicationRecord
   has_many :lecture_years, through: :students
 
   validates :user_id,     presence: true,
-                          length: { maximum: 255 },
+                          length: { maximum: 32 },
                           uniqueness: true
   validates :name,        presence: true,
-                          length: { maximum: 255 }
+                          length: { maximum: 16 }
   validates :authority,   presence: true,
                           numericality: {
                             greater_than: 0,
                             less_than: 4
                           }
   validates :password,    presence: true,
-                          length: { minimum: 6 }
+                          length: { in: 6..64 }
 
   has_secure_password
 

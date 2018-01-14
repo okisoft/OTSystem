@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  lecture_year: one
-  name: MyString
-
-two:
-  lecture_year: two
-  name: MyString
+group:
+  lecture_year: lecture_year
+  name: name

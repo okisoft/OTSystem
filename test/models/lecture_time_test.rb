@@ -25,7 +25,12 @@ class LectureTimeTest < ActiveSupport::TestCase
   end
 
   test "title が長ければ無効であること" do
-    @lecture_time.title = "a" * 257
+    @lecture_time.title = "a" * 33
     assert_not @lecture_time.valid?
+  end
+
+  test "title が文字数内であれば有効であること" do
+    @lecture_time.title = "a" * 32
+    assert @lecture_time.valid?
   end
 end

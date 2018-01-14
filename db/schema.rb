@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114004127) do
+ActiveRecord::Schema.define(version: 20180114122401) do
+
+  create_table "group_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "group_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_members_on_group_id"
+    t.index ["user_id"], name: "index_group_members_on_user_id"
+  end
+
+  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "lecture_year_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lecture_year_id"], name: "index_groups_on_lecture_year_id"
+  end
 
   create_table "lecture_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "lecture_year_id", null: false
@@ -43,6 +60,18 @@ ActiveRecord::Schema.define(version: 20180114004127) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lecture_time_id"], name: "index_problems_on_lecture_time_id"
+  end
+
+  create_table "progresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "lecture_time_id"
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.integer "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_progresses_on_group_id"
+    t.index ["lecture_time_id"], name: "index_progresses_on_lecture_time_id"
+    t.index ["user_id"], name: "index_progresses_on_user_id"
   end
 
   create_table "public_lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -86,9 +115,15 @@ ActiveRecord::Schema.define(version: 20180114004127) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "group_members", "groups"
+  add_foreign_key "group_members", "users"
+  add_foreign_key "groups", "lecture_years"
   add_foreign_key "lecture_times", "lecture_years"
   add_foreign_key "lecture_years", "lectures"
   add_foreign_key "problems", "lecture_times"
+  add_foreign_key "progresses", "groups"
+  add_foreign_key "progresses", "lecture_times"
+  add_foreign_key "progresses", "users"
   add_foreign_key "public_lectures", "lecture_times"
   add_foreign_key "public_lectures", "lectures"
   add_foreign_key "public_lectures", "users"

@@ -93,6 +93,7 @@ Progress.create(
   icon: 1
 )
 
+=begin
 puts "Achievment"
 progess_id = Progess.find(1).id
 problem_id = Problem.find(1).id
@@ -101,6 +102,7 @@ Achievment.create(
   group_id: progess_id
   problem: problem_id
 )
+=end
 
 puts "Group"
 (1..5).each do |i|

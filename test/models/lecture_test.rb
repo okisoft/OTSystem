@@ -24,4 +24,9 @@ class LectureTest < ActiveSupport::TestCase
     @lecture.name = "a" * 33
     assert_not @lecture.valid?
   end
+
+  test "name が文字数内であれば有効であること" do
+    @lecture.name = "a" * 32
+    assert @lecture.valid?
+  end
 end
