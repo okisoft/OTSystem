@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SessionsControllerTest < ActionDispatch::IntegrationTest
+class SessionsControllerTest < ActionController::TestCase
   test "ログインページを表示すること" do
     get login_path
     assert_response :success
