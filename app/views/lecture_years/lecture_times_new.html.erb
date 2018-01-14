@@ -1,0 +1,21 @@
+<% provide(:title, '授業題目新規作成') %>
+<h1>授業題目作成画面</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@lecture_year, url: times_lecture_year_path, method: 'post') do |f| %>
+      <%= f.label :year, "開講年" %>
+      <%= f.text_field :year, class: 'form-control' %>
+      <%= f.label :style, "授業形態" %>
+      <%= f.select :style, [["個人", "個人"], ["グループ", "グループ"]], class: 'form-control' %>
+
+      <div class="field">
+        <%= f.fields_for :lecture_times do |ly| %>
+          <%= render "lecture_time_fields", f: ly %>
+        <% end %>
+        <%= link_to_add_fields "授業を追加する", f, :lecture_times %>
+      </div>
+      <%= f.submit "Create lecture", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

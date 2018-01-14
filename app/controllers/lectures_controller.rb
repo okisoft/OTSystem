@@ -8,19 +8,19 @@ class LecturesController < ApplicationController
     @lecture = Lecture.new(lecture_params)
     if @lecture.save
       flash[:succeess] = "登録しました"
-      redirect_to lecture
+      redirect_to new_times_lecture_year_path(@lecture.lecture_years.first)
     else
-      flash[:notice] = "失敗しました"
+      flash[:danger] = "失敗しました"
       render 'new'
-    end	
+    end
   end
 
-  def years
+  def lecture_years_index
     lecture = Lecture.find(params[:id])
     @lecture_years = lecture.lecture_years
   end
 
-  def times
+  def lecture_times_index
     @lecture = Lecture.find(params[:id])
     lecture_year = @lecture.lecture_years.last
     @lecture_times = lecture_year.lecture_times
@@ -29,6 +29,6 @@ class LecturesController < ApplicationController
   private
 
     def lecture_params
-      params.require(:lecture).permit(:name, lecture_years_attributes: :style)
+      params.require(:lecture).permit(:name, lecture_years_attributes: [:style, :year])
     end
 end

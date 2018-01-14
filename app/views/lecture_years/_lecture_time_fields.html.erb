@@ -1,0 +1,8 @@
+<fieldset>
+  <%= f.label :title, "授業タイトル" %>
+  <%= f.text_field :title %><br />
+  <%= f.label :time, "課題数" %>
+  <%= f.text_field :time %><br />
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "削除", '#', class: "remove_fields" %>
+</fieldset>

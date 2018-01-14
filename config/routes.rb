@@ -7,18 +7,19 @@ Rails.application.routes.draw do
   get     '/login',   to: 'sessions#new'
   post    '/login',   to: 'sessions#create'
   delete  '/logout',  to: 'sessions#destroy'
-  post	  '/lectures/new', to: 'lectures#new'
   resources :users, only: [:create, :new, :edit, :update]
   resources :students, only: [:create, :new]
   resources :lectures, only: [:create, :new] do
     member do
-      get :years
-      get :times
+      get 'years', to: 'lectures#lecture_years_index'
+      get 'times', to: 'lectures#lecture_times_index'
     end
   end
-  resources :lecture_years, only: [:create, :new] do
+  resources :lecture_years, only: [] do
     member do
-      get :times
+      get  'new',   to: 'lecture_years#lecture_times_new',   as: 'new_times'
+      get  'times', to: 'lecture_years#lecture_times_index'
+      post 'times', to: 'lecture_years#lecture_times_create'
     end
   end
 end
