@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_not_open
-    render file: '/public/not_open.html', status: 200, layout: 'application', content_type: 'text/html'
+    render file: '/public/not_open.html', status: 404, layout: 'application', content_type: 'text/html'
   end
 
   private
