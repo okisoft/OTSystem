@@ -1,0 +1,10 @@
+<% provide(:title, '授業回選択画面') %>
+<h1>授業回選択画面</h1>
+
+<% @lecture_times.each do |lecture_times| %>
+  <li>
+    <%= link_to lecture_times.title, '#' %>
+  </li>
+<% end %>
+
+<%= link_to "過去の質問閲覧", years_lecture_path(@lecture), class: "btn btn-primary" %>

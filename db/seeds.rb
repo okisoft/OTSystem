@@ -27,6 +27,28 @@ puts "Make LectureTime"
   end
 end
 
+puts "Make Problem"
+LectureTime.all.each do |lecture_year|
+  (1..5).each do |j|
+    Problem.create(
+      lecture_time_id: lecture_year.id,
+      name: "課題 #{j}", content: "内容"
+    )
+  end
+end
+
+puts "Make Question"
+Problem.all.each do |problem|
+  (1..5).each do |j|
+    Question.create(
+      problem_id: problem.id,
+      user_name: "user#{j}", group_name: "",
+      content: "質問です", reply: "回答です",
+      visible: true
+    )
+  end
+end
+
 puts "Make User"
 admin = User.create(
   user_id: "admin",
