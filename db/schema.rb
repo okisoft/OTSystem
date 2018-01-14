@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180113094735) do
+ActiveRecord::Schema.define(version: 20180114004127) do
 
   create_table "lecture_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "lecture_year_id", null: false
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 20180113094735) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "problems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "lecture_time_id"
+    t.string "name"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lecture_time_id"], name: "index_problems_on_lecture_time_id"
+  end
+
   create_table "public_lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "lecture_id"
@@ -45,6 +54,18 @@ ActiveRecord::Schema.define(version: 20180113094735) do
     t.index ["lecture_id"], name: "index_public_lectures_on_lecture_id"
     t.index ["lecture_time_id"], name: "index_public_lectures_on_lecture_time_id"
     t.index ["user_id"], name: "index_public_lectures_on_user_id"
+  end
+
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "problem_id"
+    t.string "user_name"
+    t.string "group_name"
+    t.text "content"
+    t.string "reply"
+    t.boolean "visible"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["problem_id"], name: "index_questions_on_problem_id"
   end
 
   create_table "students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -67,9 +88,11 @@ ActiveRecord::Schema.define(version: 20180113094735) do
 
   add_foreign_key "lecture_times", "lecture_years"
   add_foreign_key "lecture_years", "lectures"
+  add_foreign_key "problems", "lecture_times"
   add_foreign_key "public_lectures", "lecture_times"
   add_foreign_key "public_lectures", "lectures"
   add_foreign_key "public_lectures", "users"
+  add_foreign_key "questions", "problems"
   add_foreign_key "students", "lecture_years"
   add_foreign_key "students", "users"
 end
