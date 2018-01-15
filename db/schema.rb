@@ -10,23 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114122401) do
+ActiveRecord::Schema.define(version: 20180115062512) do
 
-  create_table "group_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "group_id"
+  create_table "achievments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
+    t.bigint "problem_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_members_on_group_id"
-    t.index ["user_id"], name: "index_group_members_on_user_id"
+    t.index ["problem_id"], name: "index_achievments_on_problem_id"
+    t.index ["user_id"], name: "index_achievments_on_user_id"
+  end
+
+  create_table "group_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   end
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "lecture_year_id"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["lecture_year_id"], name: "index_groups_on_lecture_year_id"
   end
 
   create_table "lecture_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -65,11 +63,9 @@ ActiveRecord::Schema.define(version: 20180114122401) do
   create_table "progresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "lecture_time_id"
     t.bigint "user_id"
-    t.bigint "group_id"
     t.integer "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_progresses_on_group_id"
     t.index ["lecture_time_id"], name: "index_progresses_on_lecture_time_id"
     t.index ["user_id"], name: "index_progresses_on_user_id"
   end
@@ -87,14 +83,14 @@ ActiveRecord::Schema.define(version: 20180114122401) do
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "problem_id"
-    t.string "user_name"
-    t.string "group_name"
+    t.bigint "user_id"
     t.text "content"
     t.string "reply"
     t.boolean "visible"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["problem_id"], name: "index_questions_on_problem_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -115,19 +111,18 @@ ActiveRecord::Schema.define(version: 20180114122401) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "group_members", "groups"
-  add_foreign_key "group_members", "users"
-  add_foreign_key "groups", "lecture_years"
+  add_foreign_key "achievments", "problems"
+  add_foreign_key "achievments", "users"
   add_foreign_key "lecture_times", "lecture_years"
   add_foreign_key "lecture_years", "lectures"
   add_foreign_key "problems", "lecture_times"
-  add_foreign_key "progresses", "groups"
   add_foreign_key "progresses", "lecture_times"
   add_foreign_key "progresses", "users"
   add_foreign_key "public_lectures", "lecture_times"
   add_foreign_key "public_lectures", "lectures"
   add_foreign_key "public_lectures", "users"
   add_foreign_key "questions", "problems"
+  add_foreign_key "questions", "users"
   add_foreign_key "students", "lecture_years"
   add_foreign_key "students", "users"
 end

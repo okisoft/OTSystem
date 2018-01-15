@@ -1,7 +1,6 @@
 class Progress < ApplicationRecord
   belongs_to :lecture_time
   belongs_to :user,         optional: true
-  belongs_to :group,        optional: true
 
   validates :icon,      numericality: {
                           greater_than: 0,

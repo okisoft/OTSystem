@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   belongs_to  :problem
-  validates   :user_name,     length: { maximum: 16 }
-  validates   :group_name,    length: { maximum: 16 }
+  belongs_to  :user,         optional: true
+
   validates   :content,       presence: true,
                               length: { maximum: 512}
   validates   :reply,         length: { maximum: 512}

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :students
+  has_many :questions
   has_many :lecture_years, through: :students
 
   validates :user_id,     presence: true,
