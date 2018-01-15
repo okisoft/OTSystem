@@ -9,7 +9,6 @@ class LectureYearsController < ApplicationController
     if @lecture_year.update_attributes(lecture_year_params)
       redirect_to times_lecture_year_path(@lecture_year)
     else
-      binding.pry
       render 'lecture_times_new'
     end
   end
