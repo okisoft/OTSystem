@@ -14,8 +14,12 @@ end
 puts "Make LectureYear"
 (1..5).each do |i|
   lecture_id = Lecture.find(i).id
-  (1..5).each do |j|
-    LectureYear.create(lecture_id: lecture_id, year: 2010 + j, style: "個人")
+  5.times do |j|
+    LectureYear.new(
+      lecture_id: lecture_id,
+      year: Date.today.financial_year.to_i - j,
+      style: "個人"
+    ).save(validate: false)
   end
 end
 
@@ -57,6 +61,7 @@ admin = User.create(
   password: "password",
   password_digest: User.digest("password")
 )
+
 (1..5).each do |i|
   User.create(
     user_id: "user#{i}",
@@ -83,6 +88,7 @@ Student.create(
   lecture_year_id: lecture_year_id
 )
 
+=begin
 puts "Make Progress"
 user_id = User.find_by(authority: 3).id
 lecture__year_id = PublicLecture.first.lecture_time.lecture_year.id
@@ -93,7 +99,6 @@ Progress.create(
   icon: 1
 )
 
-=begin
 puts "Achievment"
 progess_id = Progess.find(1).id
 problem_id = Problem.find(1).id
@@ -102,7 +107,6 @@ Achievment.create(
   group_id: progess_id
   problem: problem_id
 )
-=end
 
 puts "Group"
 (1..5).each do |i|
@@ -117,6 +121,7 @@ puts "GroupMember"
 group_id = Group.find(1).id
 user_id = User.find_by(authority: 3).id
 GroupMember.create(
-  group_id: group_id
+  group_id: group_id,
   user_id: user_id
 )
+=end
