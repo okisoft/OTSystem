@@ -19,26 +19,6 @@ class QuestionTest < ActiveSupport::TestCase
     assert_not @question.valid?
   end
 
-  test "user_name が長ければ無効であること" do
-    @question.user_name = "a" * 17
-    assert_not @question.valid?
-  end
-
-  test "user_name が文字数内であれば有効であること" do
-    @question.user_name = "a" * 16
-    assert @question.valid?
-  end
-
-  test "group_name が長ければ無効であること" do
-    @question.group_name = "a" * 17
-    assert_not @question.valid?
-  end
-
-  test "group_name が文字数内であれば有効であること" do
-    @question.group_name = "a" * 16
-    assert @question.valid?
-  end
-
   test "content が長ければ無効であること" do
     @question.content = "a" * 513
     assert_not @question.valid?

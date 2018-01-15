@@ -1,8 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 question:
   problem: problem
-  user_name: "nonaka"
-  group_name: "OTsystem"
+  user: user
   content: "わからん"
   reply: "わからんわかる"
   visible: true
