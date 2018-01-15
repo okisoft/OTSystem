@@ -12,6 +12,12 @@
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
+      <% if !current_user.nil? && current_user.admin? %>
+        <% authoritys = [['教師', 1], ['アシスタント', 2], ['学生', 3]] %>
+        <%= f.label :authority %>
+        <%= f.select :authority, authoritys, selected: current_user.authority, class: 'form-control' %>
+      <% end %>
+
       <%= f.label :current_password, "Current Password" %>
       <%= f.password_field :current_password, class: 'form-control' %>
 

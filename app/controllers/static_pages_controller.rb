@@ -12,19 +12,26 @@ class StaticPagesController < ApplicationController
   end
 
   def home
-    render_404 if current_user.admin?
-    public_lecture = PublicLecture.first
-    render_not_open if public_lecture.lecture_time_id.nil?
-
-    lecture_year = public_lecture.lecture_time.lecture_year
-    if current_user.lecture_years.find_by(id: lecture_year.id).nil?
-      redirect_to new_student_path
+    if current_user.admin?
+      render_404
+    else
+      public_lecture = PublicLecture.first
+      if public_lecture.lecture_time_id.nil?
+        render_not_open
+      else
+        lecture_year = public_lecture.lecture_time.lecture_year
+        if current_user.lecture_years.find_by(id: lecture_year.id).nil?
+          redirect_to new_student_path
+        end
+      end
     end
   end
 
   def admin
-    render_404 unless current_user.admin?
-
-    @lectures = Lecture.all
+    if !current_user.admin?
+      render_404
+    else
+      @lectures = Lecture.all
+    end
   end
 end

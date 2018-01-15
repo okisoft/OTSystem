@@ -1,0 +1,11 @@
+admin:
+  user_id: "admin"
+  name: "admin user"
+  authority: 1,
+  password_digest: <%= User.digest('password') %>
+
+user:
+  user_id: "user"
+  name: "student user"
+  authority: 3,
+  password_digest: <%= User.digest('password') %>

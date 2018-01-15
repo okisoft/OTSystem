@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LectureTest < ActiveSupport::TestCase
   def setup
-    @lecture = Lecture.new(name: "software")
+    @lecture = lectures(:lecture)
   end
 
   test "有効であること" do
@@ -14,7 +14,7 @@ class LectureTest < ActiveSupport::TestCase
     assert_not @lecture.valid?
   end
 
-  test "name が複数あれば無効であること" do
+  test "name がユニークでないならば無効であること" do
     dup_name = @lecture.dup
     @lecture.save
     assert_not dup_name.valid?
@@ -23,5 +23,10 @@ class LectureTest < ActiveSupport::TestCase
   test "name が長ければ無効であること" do
     @lecture.name = "a" * 33
     assert_not @lecture.valid?
+  end
+
+  test "name が文字数内であれば有効であること" do
+    @lecture.name = "a" * 32
+    assert @lecture.valid?
   end
 end

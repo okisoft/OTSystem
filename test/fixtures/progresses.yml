@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+progress:
+  lecture_time: lecture_time
+  user: user
+  group: group
+  icon: 1
