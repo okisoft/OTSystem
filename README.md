@@ -23,3 +23,19 @@ $ bundle install --path vendor/bundle
 ```
 $ bundle exec rails s
 ```
+
+* JQueryの導入
+
+  1. `npm`または`brew`で`yarn`をインストールする
+  ```
+  # Homebrewから
+  $ brew install yarn
+  # npmから
+  $ npm --global install yarn
+  ```
+
+  2. プロジェクトのトップで以下のコマンドを実行
+
+  ```
+  yarn install
+  ```
