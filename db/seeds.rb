@@ -89,26 +89,24 @@ Student.create(
   lecture_year_id: lecture_year_id
 )
 
-=begin
 puts "Make Progress"
 user_id = User.find_by(authority: 3).id
-lecture__year_id = PublicLecture.first.lecture_time.lecture_year.id
+lecture_time_id = PublicLecture.first.lecture_time.id
 Progress.create(
-  lecture_year_id: lecture__year_id,
+  lecture_time_id: lecture_time_id,
   user_id: user_id,
-  group_id: group_id,
   icon: 1
 )
 
-puts "Achievment"
-progess_id = Progess.find(1).id
+puts "Make Achievment"
+user_id = User.find_by(authority: 3).id
 problem_id = Problem.find(1).id
 Achievment.create(
-  user_id: progess_id
-  group_id: progess_id
-  problem: problem_id
+  user_id: user_id,
+  problem_id: problem_id
 )
 
+=begin
 puts "Group"
 (1..5).each do |i|
   lecture__year_id = LectureYear.find(i).id
