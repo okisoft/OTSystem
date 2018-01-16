@@ -6,6 +6,25 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "Make User"
+admin = User.create(
+  user_id: "admin",
+  name: "user admin",
+  authority: 1,
+  password: "password",
+  password_digest: User.digest("password")
+)
+
+(1..5).each do |i|
+  User.create(
+    user_id: "user#{i}",
+    name: "user name#{i}",
+    authority: 3,
+    password: "password",
+    password_digest: User.digest("password")
+  )
+end
+
 puts "Make Lecture"
 (1..5).each do |i|
   Lecture.create(name: "授業 #{i}")
@@ -27,7 +46,10 @@ puts "Make LectureTime"
 (1..25).each do |i|
   year_id = LectureYear.find(i).id
   (1..5).each do |j|
-    LectureTime.create(lecture_year_id: year_id, time: j, title: "タイトル #{j}")
+    LectureTime.create(
+      lecture_year_id: year_id,
+      time: j,
+      title: "タイトル #{j}")
   end
 end
 
@@ -42,35 +64,14 @@ LectureTime.all.each do |lecture_year|
 end
 
 puts "Make Question"
-Problem.all.each do |problem|
-  (1..5).each do |j|
-    Question.create(
-      problem_id: problem.id,
-      user_name: "user#{j}", group_name: "",
-      content: "質問です", reply: "回答です",
-      visible: true
-    )
-  end
-end
-
-puts "Make User"
-admin = User.create(
-  user_id: "admin",
-  name: "user admin",
-  authority: 1,
-  password: "password",
-  password_digest: User.digest("password")
+problem_id_ = Problem.find(1).id
+user_id_ = User.find_by(authority: 3).id
+Question.create(
+  problem_id: problem_id_,
+  user_id: user_id_,# group_name: "",
+  content: "質問です", reply: "回答です",
+  visible: true
 )
-
-(1..5).each do |i|
-  User.create(
-    user_id: "user#{i}",
-    name: "user name#{i}",
-    authority: 3,
-    password: "password",
-    password_digest: User.digest("password")
-  )
-end
 
 puts "Make PublicLecture"
 public_lecture = Lecture.last
