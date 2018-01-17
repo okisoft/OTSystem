@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  problem: one
-
-two:
-  user: two
-  problem: two
+achievment:
+  user: user
+  problem: problem
