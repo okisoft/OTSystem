@@ -1,0 +1,27 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+<% @question = Question.new unless @question %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <% if current_user.admin? %>
+    <% else %>
+      <%= form_for(@question, url: questions_path, method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
+        <%= f.submit "質問をする", class: "btn btn-primary" %>
+      <% end %>
+      <%= form_for(@question, url: questions_path, method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
+        <%= f.submit "過去の質問", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+    <% @questions.each do |question| %>
+      <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
+        <li>
+          <%= question.problem.name %>
+          <%= question.user.id %>
+          <%= question.content %>
+          <%= question.reply %>
+        </li>
+      <% end %>
+    <% end %>
+  </div>
+</div>
