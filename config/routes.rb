@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get     '/login',      to: 'sessions#new'
   post    '/login',      to: 'sessions#create'
   delete  '/logout',     to: 'sessions#destroy'
-  get     '/quiestions', to: 'questions#index'
+  get     '/questions',  to: 'questions#index'
   resources :users, only: [:create, :new, :edit, :update]
   resources :students, only: [:create, :new]
   resources :lectures, only: [:create, :new] do
