@@ -26,14 +26,14 @@ admin = User.create(
 end
 
 puts "Make Lecture"
-(1..5).each do |i|
+(1..3).each do |i|
   Lecture.create(name: "授業 #{i}")
 end
 
 puts "Make LectureYear"
-(1..5).each do |i|
+(1..3).each do |i|
   lecture_id = Lecture.find(i).id
-  5.times do |j|
+  3.times do |j|
     LectureYear.new(
       lecture_id: lecture_id,
       year: Date.today.financial_year.to_i - j,
@@ -43,9 +43,9 @@ puts "Make LectureYear"
 end
 
 puts "Make LectureTime"
-(1..25).each do |i|
+(1..9).each do |i|
   year_id = LectureYear.find(i).id
-  (1..5).each do |j|
+  (1..3).each do |j|
     LectureTime.create(
       lecture_year_id: year_id,
       time: j,
@@ -54,24 +54,30 @@ puts "Make LectureTime"
 end
 
 puts "Make Problem"
-LectureTime.all.each do |lecture_year|
-  (1..5).each do |j|
+LectureTime.all.each do |lecture_time|
+  (1..3).each do |j|
     Problem.create(
-      lecture_time_id: lecture_year.id,
+      lecture_time_id: lecture_time.id,
       name: "課題 #{j}", content: "内容"
     )
   end
 end
 
 puts "Make Question"
-problem_id_ = Problem.find(1).id
-user_id_ = User.find_by(authority: 3).id
-Question.create(
-  problem_id: problem_id_,
-  user_id: user_id_,# group_name: "",
-  content: "質問です", reply: "回答です",
-  visible: true
-)
+Problem.all.each do |problem|
+(2..6).each do |i|
+  #problem_id_ = Problem.find(i).id
+  #user_id_ = User.find_by(authority: 3).id
+  user_id_ = User.find_by(id: i, authority: 3).id
+  Question.create(
+    #problem_id: problem_id_,
+    problem_id: problem.id,
+    user_id: user_id_,# group_name: "",
+    content: "#{i}の質問です", reply: " #{i}の回答です",
+    visible: true
+  )
+  end
+end
 
 puts "Make PublicLecture"
 public_lecture = Lecture.last

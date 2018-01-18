@@ -1,11 +1,11 @@
-<% provide(:title, 'All users') %>
-<h1>All users</h1>
+<% provide(:title, '質問一覧画面') %>
+<h1>質問一覧画面</h1>
 <% @question = Question.new unless @question %>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <% if current_user.admin? %>
-    <% else %>
+    <% if current_user.admin? %> <%# 管理者用のパーツを表示する %>
+    <% else %> <%# 学生用のパーツを表示する %>
       <%= form_for(@question, url: questions_path, method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
         <%= f.submit "質問をする", class: "btn btn-primary" %>
       <% end %>
