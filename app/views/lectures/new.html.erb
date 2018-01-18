@@ -15,5 +15,8 @@
 
       <%= f.submit "Create lecture", class: "btn btn-primary" %>
     <% end %>
+    <%= form_for(@lecture, url: admin_path, method: 'get') do |f| %>
+      <%= f.submit "もどる", class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>

@@ -12,7 +12,7 @@
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <% if !current_user.nil? && current_user.admin? %>
+      <% if current_user.admin? %>
         <% authoritys = [['教師', 1], ['アシスタント', 2], ['学生', 3]] %>
         <%= f.label :authority %>
         <%= f.select :authority, authoritys, selected: current_user.authority, class: 'form-control' %>
@@ -28,6 +28,11 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <% if current_user.admin? %>
+      <%= link_to "もどる", admin_path(@lecture), class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "もどる", home_path(@lecture), class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

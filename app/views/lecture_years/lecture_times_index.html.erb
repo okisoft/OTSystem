@@ -1,8 +1,16 @@
 <% provide(:title, '授業回選択画面') %>
 <h1>授業回選択画面</h1>
+<% @lecture_time = LectureTime.new unless @lecture_time %>
 
-<% @lecture_times.each do |lecture_times| %>
-  <li>
-    <%= link_to lecture_times.title, '#' %>
-  </li>
-<% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <% @lecture_times.each do |lecture_times| %>
+      <li>
+        <%= link_to lecture_times.title, '#' %>
+      </li>
+    <% end %>
+    <%= form_for(@lecture_time, url: new_times_lecture_year_path, method: 'get') do |f| %>
+      <%= f.submit "もどる", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
