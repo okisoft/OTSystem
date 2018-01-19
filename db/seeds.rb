@@ -46,14 +46,14 @@ end
 puts "Make LectureTime"
 (1..9).each do |i|
   lecture_year_ = LectureYear.find(i)
-  lecture_year_id = lecture_year_.id
-  lecture_year_year = lecture_year_.year
+  lecture_year_id_ = lecture_year_.id
+  lecture_year_year_ = lecture_year_.year
   lecture_name = Lecture.find(lecture_year_.lecture_id).name
   (1..3).each do |j|
     LectureTime.create(
-      lecture_year_id: lecture_year_id,
+      lecture_year_id: lecture_year_id_,
       time: j,
-      title: "#{lecture_year_year}年度 #{lecture_name} 第#{j}回")
+      title: "#{lecture_year_year_}年度 #{lecture_name} 第#{j}回")
   end
 end
 
@@ -68,19 +68,43 @@ LectureTime.all.each do |lecture_time|
 end
 
 puts "Make Question"
+admin_ = User.find_by(id: 1, authority: 1)
+user1_ = User.find_by(id: 2, authority: 3)
+user2_ = User.find_by(id: 3, authority: 3)
+user3_ = User.find_by(id: 4, authority: 3)
 Problem.all.each do |problem|
-(2..6).each do |i|
   #problem_id_ = Problem.find(i).id
   #user_id_ = User.find_by(authority: 3).id
-  user_id_ = User.find_by(id: i, authority: 3).id
+
+  # id を集める
+  problem_id_ = problem.id
+  lecture_time_id_ = problem.lecture_time.id
+
+  problem_name_ = problem.name
+  lecture_time_title_ = LectureTime.find(lecture_time_id_).title
+
   Question.create(
     #problem_id: problem_id_,
-    problem_id: problem.id,
-    user_id: user_id_,# group_name: "",
-    content: "#{i}の質問です", reply: " #{i}の回答です",
+    problem_id: problem_id_,
+    user_id: user1_.id,# group_name: "",
+    content: "[#{lecture_time_title_}, #{problem_name_}]  #{user1_.name}の質問です", reply: " #{admin_.name}の回答です",
     visible: true
   )
-  end
+  Question.create(
+    #problem_id: problem_id_,
+    problem_id: problem_id_,
+    user_id: user2_.id,# group_name: "",
+    content: "[#{lecture_time_title_}, #{problem_name_}]  #{user2_.name}の質問です", reply: " #{admin_.name}の回答です",
+    visible: true
+  )
+  Question.create(
+    #problem_id: problem_id_,
+    problem_id: problem_id_,
+    user_id: user3_.id,# group_name: "",
+    content: "[#{lecture_time_title_}, #{problem_name_}]  #{user3_.name}の質問です", reply: " #{admin_.name}の回答です",
+    visible: true
+  )
+
 end
 
 puts "Make PublicLecture"
