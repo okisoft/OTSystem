@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'lecture_times/questions_index'
+
   get 'problems/index'
 
   root  to: 'static_pages#assign'
