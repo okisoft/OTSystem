@@ -1,0 +1,30 @@
+<% provide(:title, '質問一覧画面') %>
+<h1>質問一覧画面</h1>
+<% @question = Question.new unless @question %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <% if current_user.admin? %> <%# 管理者用のパーツを表示する %>
+    <% else %> <%# 学生用のパーツを表示する %>
+      <%= form_for(@question, url: '#', method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
+        <%= f.submit "質問をする", class: "btn btn-primary" %>
+      <% end %>
+      <%= form_for(@question, url: '#', method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
+        <%= f.submit "過去の質問", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+    <% @problems.each do |problem| %>
+      <% questions = problem.questions %>
+      <% questions.each do |question| %>
+        <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
+          <li>
+            <%= question.problem.name %>
+            <%= question.user.id %>
+            <%= question.content %>
+            <%= question.reply %>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

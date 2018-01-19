@@ -22,8 +22,8 @@ class LecturesController < ApplicationController
 
   def lecture_times_index
     @lecture = Lecture.find(params[:id])
-    lecture_year = @lecture.lecture_years.last
-    @lecture_times = lecture_year.lecture_times
+    lecture_year = @lecture.lecture_years.last # 最新年のデータを取得
+    @lecture_times = lecture_year.lecture_times # 最新年の授業回を取得
   end
 
   private

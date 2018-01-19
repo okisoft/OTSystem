@@ -1,0 +1,2 @@
+module LectureTimesHelper
+end
