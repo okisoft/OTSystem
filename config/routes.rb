@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'problems/index'
+
   root  to: 'static_pages#assign'
   get     '/home',       to: 'static_pages#home'
   get     '/admin',      to: 'static_pages#admin'
@@ -7,9 +9,10 @@ Rails.application.routes.draw do
   get     '/login',      to: 'sessions#new'
   post    '/login',      to: 'sessions#create'
   delete  '/logout',     to: 'sessions#destroy'
-  get     '/questions',  to: 'questions#index'
   resources :users, only: [:create, :new, :edit, :update]
   resources :students, only: [:create, :new]
+  resources :problems, only: [:index]
+  resources :questions, only: [:index]
   resources :lectures, only: [:create, :new] do
     member do
       get 'years', to: 'lectures#lecture_years_index'
