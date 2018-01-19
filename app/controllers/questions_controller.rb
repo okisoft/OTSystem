@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    lecture_time = LectureTime.find(params[:id])
+    @problems = lecture_time.problems
+    @questions = @problems.questions
   end
 end
