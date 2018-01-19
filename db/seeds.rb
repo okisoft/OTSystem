@@ -26,13 +26,14 @@ admin = User.create(
 end
 
 puts "Make Lecture"
-(1..3).each do |i|
-  Lecture.create(name: "授業 #{i}")
-end
+Lecture.create(name: "ソフ工")
+Lecture.create(name: "コンパイラ")
+Lecture.create(name: "数学")
 
 puts "Make LectureYear"
 (1..3).each do |i|
-  lecture_id = Lecture.find(i).id
+  lecture_ = Lecture.find(i)
+  lecture_id = lecture_.id
   3.times do |j|
     LectureYear.new(
       lecture_id: lecture_id,
@@ -44,21 +45,24 @@ end
 
 puts "Make LectureTime"
 (1..9).each do |i|
-  year_id = LectureYear.find(i).id
+  lecture_year_ = LectureYear.find(i)
+  lecture_year_id = lecture_year_.id
+  lecture_year_year = lecture_year_.year
+  lecture_name = Lecture.find(lecture_year_.lecture_id).name
   (1..3).each do |j|
     LectureTime.create(
-      lecture_year_id: year_id,
+      lecture_year_id: lecture_year_id,
       time: j,
-      title: "タイトル #{j}")
+      title: "#{lecture_year_year}年度 #{lecture_name} 第#{j}回")
   end
 end
 
 puts "Make Problem"
 LectureTime.all.each do |lecture_time|
-  (1..3).each do |j|
+  (1..3).each do |i|
     Problem.create(
       lecture_time_id: lecture_time.id,
-      name: "課題 #{j}", content: "内容"
+      name: "課題 #{i}", content: "内容"
     )
   end
 end
