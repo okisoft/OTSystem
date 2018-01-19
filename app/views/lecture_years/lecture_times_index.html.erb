@@ -3,6 +3,6 @@
 
 <% @lecture_times.each do |lecture_time| %>
   <li>
-    <%= link_to lecture_time.title, questions_path(lecture_time) %>
+    <%= link_to lecture_time.title, questions_lecture_time_path(lecture_time) %>
   </li>
 <% end %>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'lecture_times/questions_index'
+
 
   get 'problems/index'
 
@@ -26,6 +26,11 @@ Rails.application.routes.draw do
       get  'new',   to: 'lecture_years#lecture_times_new',   as: 'new_times'
       get  'times', to: 'lecture_years#lecture_times_index'
       post 'times', to: 'lecture_years#lecture_times_create'
+    end
+  end
+  resources :lecture_times, only: [] do
+    member do
+      get 'questions', to: 'lecture_times#questions_index'
     end
   end
 end
