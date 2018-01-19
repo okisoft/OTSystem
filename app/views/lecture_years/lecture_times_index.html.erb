@@ -4,9 +4,9 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <% @lecture_times.each do |lecture_times| %>
+    <% @lecture_times.each do |lecture_time| %>
       <li>
-        <%= link_to lecture_times.title, '#' %>
+        <%= link_to lecture_time.title, questions_lecture_time_path(lecture_time) %>
       </li>
     <% end %>
     <%= form_for(@lecture_time, url: new_times_lecture_year_path, method: 'get') do |f| %>
