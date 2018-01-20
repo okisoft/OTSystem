@@ -10,7 +10,7 @@
         <%= f.submit "質問をする", class: "btn btn-primary" %>
       <% end %>
       <%= form_for(@question, url: '#', method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
-        <%= f.submit "過去の質問", class: "btn btn-primary" %>
+        <%= f.submit "今年度の質問", class: "btn btn-primary" %>
       <% end %>
     <% end %>
     <% @problems.each do |problem| %>
