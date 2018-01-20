@@ -37,7 +37,7 @@ puts "Make LectureYear"
   3.times do |j|
     LectureYear.new(
       lecture_id: lecture_id,
-      year: Date.today.financial_year.to_i - j,
+      year: Date.today.financial_year.to_i - (1 - j),
       style: "個人"
     ).save(validate: false)
   end
