@@ -6,7 +6,7 @@
   <div class="col-md-6 col-md-offset-3">
     <% if current_user.admin? %> <%# 管理者用のパーツを表示する %>
     <% else %> <%# 学生用のパーツを表示する %>
-      <%= form_for(@question, url: '#', method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
+      <%= form_for(@question, url: new_question_path, method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
         <%= f.submit "質問をする", class: "btn btn-primary" %>
       <% end %>
       <%= form_for(@question, url: home_path, method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
