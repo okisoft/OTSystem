@@ -1,5 +1,5 @@
-<% provide(:title, '質問一覧画面') %>
-<h1>質問一覧画面</h1>
+<% provide(:title, '過去の質問一覧画面') %>
+<h1>過去の質問一覧画面</h1>
 <% @question = Question.new unless @question %>
 
 <div class="row">
@@ -9,7 +9,7 @@
       <%= form_for(@question, url: '#', method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
         <%= f.submit "質問をする", class: "btn btn-primary" %>
       <% end %>
-      <%= form_for(@question, url: '#', method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
+      <%= form_for(@question, url: home_path, method: 'get') do |f| %> <%# リンク先が未実装のためとりあえず同じページを返す %>
         <%= f.submit "今年度の質問", class: "btn btn-primary" %>
       <% end %>
     <% end %>
