@@ -6,7 +6,16 @@
     <%= form_for(@question) do |f| %>
       <%#= render 'shared/error_messages' %>
 
-      <%= f.hidden_field :problem_id, value: Problem.find_by(lecture_time_id: PublicLecture.first.lecture_time_id).id %>
+      <% problems = Problem.where(lecture_time_id: PublicLecture.first.lecture_time_id) %>
+
+      <% problems_array = [] %>
+      <%= problems.each do |pr| %>
+        <% problems_array.push([pr.name, pr.id]) %>
+      <% end %>
+      
+      <%= f.label :problem_id %>
+      <%= f.select :problem_id, problems_array, selected: problems_array.first.first, class: 'form-control' %>
+
       <%= f.hidden_field :user_id, value: current_user.id %>
 
       <%= f.label :content, "質問入力欄" %>
@@ -14,7 +23,7 @@
 
       <% visibles = [['公開する', true], ['公開しない', false]] %>
       <%= f.label :visible %>
-      <%= f.select :visible, visibles, selected: "公開", class: 'form-control' %>
+      <%= f.select :visible, visibles, selected: "公開する", class: 'form-control' %>
 
       <%= f.submit "送信", class: "btn btn-primary" %>
     <% end %>
