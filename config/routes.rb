@@ -27,4 +27,5 @@ Rails.application.routes.draw do
       get 'questions', to: 'lecture_times#questions_index'
     end
   end
+  resources :questions, only: [:create, :new]
 end
