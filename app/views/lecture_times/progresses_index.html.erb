@@ -3,12 +3,14 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <% @progresses.each do |progress| %>
+    <% @achievments_array.each do |achv| %>
       <li>
-        <%= progress.user.user_id %>
-        <%= progress.user.name %>
-        <%= progress.icon %>
-        <!--<%= progress.user.name %>-->
+        <%= achv.first.user.user_id %>
+        <%= achv.first.user.name %>
+
+        <%= achv.last %>
+
+        <%= achv.first.icon %>
       </li>
     <% end %>
   </div>
