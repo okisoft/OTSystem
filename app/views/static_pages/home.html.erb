@@ -1,8 +1,6 @@
 <% provide(:title, 'ホーム画面') %>
 <h1>ホーム画面</h1>
 
-<% problems = @public_lecture_time.problems.all %>
-
 <%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary" %>
 <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
 
@@ -10,7 +8,7 @@
 <%= link_to "過去の質問閲覧", years_lecture_path(@lecture), id: @lecture_id, class: "btn btn-primary" %>
 
 <%# 質問の一覧を表示する %>
-<% problems.each do |problem| %>
+<% @problems.each do |problem| %>
   <% questions = problem.questions %>
   <% questions.each do |question| %>
     <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
