@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :lecture_times, only: [] do
     member do
       get 'questions', to: 'lecture_times#questions_index'
+      get 'progresses', to: 'lecture_times#progresses_index'
     end
   end
   resources :questions, only: [:create, :new]

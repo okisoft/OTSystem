@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :students
   has_many :questions
   has_many :lecture_years, through: :students
+  has_many :achievments
+  has_many :problems, through: :achievments
 
   validates :user_id,     presence: true,
                           length: { maximum: 32 },
