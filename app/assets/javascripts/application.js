@@ -16,4 +16,3 @@
 //= require bootstrap
 //= require popper
 //= require_tree .
-// = require data-confirm-modal
