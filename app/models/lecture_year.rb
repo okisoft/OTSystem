@@ -4,7 +4,7 @@ class LectureYear < ApplicationRecord
   has_many :progresses
   has_many :students
   has_many :users, through: :students
-  accepts_nested_attributes_for :lecture_times
+  accepts_nested_attributes_for :lecture_times, allow_destroy: true
 
   validates :year,            presence: true
   validates :style,           presence: true,
