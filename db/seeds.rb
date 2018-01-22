@@ -116,12 +116,12 @@ PublicLecture.create(
 )
 
 puts "Make Student"
-user_id = User.find_by(authority: 3).id
-lecture_year_id = PublicLecture.first.lecture_time.lecture_year.id
-Student.create(
-  user_id: user_id,
-  lecture_year_id: lecture_year_id
-)
+# user_id = User.find_by(authority: 3).id
+# lecture_year_id = PublicLecture.first.lecture_time.lecture_year.id
+# Student.create(
+#   user_id: user_id,
+#   lecture_year_id: lecture_year_id
+# )
 
 puts "Make Progress"
 lecture_time_id = PublicLecture.first.lecture_time.id

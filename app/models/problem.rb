@@ -8,4 +8,8 @@ class Problem < ApplicationRecord
                         length: { maximum: 8 }
   validates :content,   presence: true,
                         length: { maximum: 512}
+
+  def achievment?(user)
+    !self.users.find_by(id: user.id).nil?
+  end
 end
