@@ -39,6 +39,8 @@ gem 'travis'
 # Use Bootstrap as the framework
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'jquery-rails'
+# Use Bootstrap to confirm dialog
+gem 'data-confirm-modal'
 
 gem 'fiscali'
 
