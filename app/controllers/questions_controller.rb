@@ -1,6 +1,12 @@
 class QuestionsController < ApplicationController
   def new
     @question = Question.new
+    problems = Problem.where(lecture_time_id: PublicLecture.first.lecture_time_id)
+
+    @problems_array = []
+    problems.each do |pr|
+      @problems_array.push([pr.name, pr.id])
+    end
   end
 
   def create
