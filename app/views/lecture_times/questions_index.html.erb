@@ -1,5 +1,11 @@
-<% provide(:title, '過去の質問一覧画面') %>
-<h1>過去の質問一覧画面</h1>
+<% if current_user.admin? %> <%# 管理者用のパーツを表示する %>
+  <% provide(:title, '質問一覧画面') %>
+  <h1>質問一覧画面</h1>
+<% else %> <%# 学生用のパーツを表示する %>
+  <% provide(:title, '過去の質問一覧画面') %>
+  <h1>過去の質問一覧画面</h1>
+<% end %>
+
 <% @question = Question.new unless @question %>
 
 <div class="row">
@@ -22,6 +28,10 @@
             <%= question.user.id %>
             <%= question.content %>
             <%= question.reply %>
+
+            <% if current_user.admin? %> <%# 管理者用のパーツを表示する %>
+              <%= link_to "回答する", "#", class: "btn btn-primary" %>
+            <% end %>
           </li>
         <% end %>
       <% end %>
