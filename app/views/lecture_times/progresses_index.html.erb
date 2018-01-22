@@ -5,6 +5,8 @@
   <div class="col-md-6 col-md-offset-3">
     <%= link_to "課題編集", '#', class: "btn btn-primary" %>
     <%= link_to "授業終了", '#', class: "btn btn-primary" %>
+    <%= link_to "質問一覧", questions_lecture_time_path(@lecture_time), class: "btn btn-primary" %>
+
     <% @users.each do |user| %>
       <li>
         <%= user.user_id %>
@@ -13,7 +15,6 @@
 
         <% @problems.each do |problem| %>
           <%= problem.achievment?(user) %>
-
         <% end %>
       </li>
     <% end %>

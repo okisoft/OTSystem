@@ -28,5 +28,5 @@ Rails.application.routes.draw do
       get 'progresses', to: 'lecture_times#progresses_index'
     end
   end
-  resources :questions, only: [:create, :new]
+  resources :questions, only: [:create, :new, :edit, :update]
 end
