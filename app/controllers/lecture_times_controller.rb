@@ -9,4 +9,9 @@ class LectureTimesController < ApplicationController
     @users = @lecture_time.lecture_year.users
     @problems = @lecture_time.problems
   end
+
+  def problems_index
+    lecture_time = LectureTime.find(params[:id])
+    @problems = lecture_time.problems.all
+  end
 end
