@@ -15,6 +15,13 @@ class StudentsController < ApplicationController
           user_id: current_user.id
         )
       end
+      Progress.all do |prg|
+        Achievment.find_or_create_by(
+          user_id: current_user.id
+          problem_id: prg.id
+          achieved: false
+        )
+      end
       redirect_to home_path
     end
   end
