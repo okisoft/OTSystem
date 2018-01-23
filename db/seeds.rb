@@ -15,10 +15,10 @@ admin = User.create(
   password_digest: User.digest("password")
 )
 
-(1..5).each do |i|
+5.times do |i|
   User.create(
-    user_id: "user#{i}",
-    name: "user name#{i}",
+    user_id: "user#{i + 1}",
+    name: "user name#{i + 1}",
     authority: 3,
     password: "password",
     password_digest: User.digest("password")
@@ -26,81 +26,99 @@ admin = User.create(
 end
 
 puts "Make Lecture"
-(1..5).each do |i|
-  Lecture.create(name: "授業 #{i}")
+["ソフ工", "コンパイラ", "数学"].each do |name|
+  Lecture.create(name: name)
 end
 
 puts "Make LectureYear"
-(1..5).each do |i|
-  lecture_id = Lecture.find(i).id
-  5.times do |j|
+Lecture.all.each do |lecture|
+  lecture_id = lecture.id
+  nowYear = Date.today.financial_year.to_i
+  [nowYear - 2, nowYear - 1, nowYear].each do |year|
     LectureYear.new(
       lecture_id: lecture_id,
-      year: Date.today.financial_year.to_i - j,
+      year: year,
       style: "個人"
     ).save(validate: false)
   end
 end
 
 puts "Make LectureTime"
-(1..25).each do |i|
-  year_id = LectureYear.find(i).id
-  (1..5).each do |j|
+LectureYear.all.each do |ly|
+  3.times do |i|
     LectureTime.create(
-      lecture_year_id: year_id,
-      time: j,
-      title: "タイトル #{j}")
+      lecture_year_id: ly.id,
+      time: i + 1,
+      title: "#{ly.year}年度 #{ly.lecture.name} 第#{i + 1}回"
+    )
   end
 end
 
 puts "Make Problem"
-LectureTime.all.each do |lecture_year|
-  (1..5).each do |j|
+LectureTime.all.each do |lt|
+  3.times do |i|
     Problem.create(
-      lecture_time_id: lecture_year.id,
-      name: "課題 #{j}", content: "内容"
+      lecture_time_id: lt.id,
+      name: "課題 #{i + 1}", content: "内容"
     )
   end
 end
 
 puts "Make Question"
-problem_id_ = Problem.find(1).id
-user_id_ = User.find_by(authority: 3).id
-Question.create(
-  problem_id: problem_id_,
-  user_id: user_id_,# group_name: "",
-  content: "質問です", reply: "回答です",
-  visible: true
-)
+admin = User.find_by(id: 1, authority: 1)
+Problem.all.each do |problem|
+  User.where(id: 2..4).each do |user|
+    Question.create(
+      problem_id: problem.id,
+      user_id: user.id,
+      content: "[#{problem.lecture_time.title}, #{problem.name}] #{user.name}の質問です",
+      reply: " #{admin.name}の回答です",
+      visible: true
+    )
+  end
+end
 
 puts "Make PublicLecture"
-public_lecture = Lecture.last
+lecture = Lecture.last
 PublicLecture.create(
   user_id: admin.id,
-  lecture_id: public_lecture.id,
-  lecture_time_id: public_lecture.lecture_years.last.lecture_times.last.id
+  lecture_id: lecture.id,
+  lecture_time_id: lecture.lecture_years.last.lecture_times.last.id
 )
 
 puts "Make Student"
-user_id = User.find_by(authority: 3).id
-lecture_year_id = PublicLecture.first.lecture_time.lecture_year.id
-Student.create(
-  user_id: user_id,
-  lecture_year_id: lecture_year_id
-)
+# user_id = User.find_by(authority: 3).id
+# lecture_year_id = PublicLecture.first.lecture_time.lecture_year.id
+# Student.create(
+#   user_id: user_id,
+#   lecture_year_id: lecture_year_id
+# )
 
 puts "Make Progress"
-user_id = User.find_by(authority: 3).id
 lecture_time_id = PublicLecture.first.lecture_time.id
-Progress.create(
-  lecture_time_id: lecture_time_id,
-  user_id: user_id,
-  icon: 1
-)
+(2..6).each do |i|
+  user_id = User.find_by(id: i,authority: 3).id
+  Progress.create(
+    lecture_time_id: lecture_time_id,
+    user_id: user_id,
+    icon: 1
+  )
+end
 
 puts "Make Achievment"
 user_id = User.find_by(authority: 3).id
-problem_id = Problem.find(1).id
+problem_id = Problem.find(79).id
+Achievment.create(
+  user_id: user_id,
+  problem_id: problem_id
+)
+problem_id = Problem.find(81).id
+Achievment.create(
+  user_id: user_id,
+  problem_id: problem_id
+)
+user_id = User.find_by(id: 4,authority: 3).id
+problem_id = Problem.find(81).id
 Achievment.create(
   user_id: user_id,
   problem_id: problem_id

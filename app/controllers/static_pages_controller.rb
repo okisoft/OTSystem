@@ -19,6 +19,9 @@ class StaticPagesController < ApplicationController
       if public_lecture.lecture_time_id.nil?
         render_not_open
       else
+        @lecture = Lecture.find_by(id: public_lecture.lecture_id)
+        public_lecture_time = @lecture.lecture_years.last.lecture_times.find_by(id: public_lecture.lecture_time_id)
+        @problems = public_lecture_time.problems.all
         lecture_year = public_lecture.lecture_time.lecture_year
         if current_user.lecture_years.find_by(id: lecture_year.id).nil?
           redirect_to new_student_path

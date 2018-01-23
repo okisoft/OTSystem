@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@lecture_year, url: times_lecture_year_path, method: 'post') do |f| %>
+    <%= nested_form_for(@lecture_year, url: times_lecture_year_path, method: 'post') do |f| %>
       <%= f.label :year, "開講年" %>
       <%= f.text_field :year, class: 'form-control' %>
       <%= f.label :style, "授業形態" %>

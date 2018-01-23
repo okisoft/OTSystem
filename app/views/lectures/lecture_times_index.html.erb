@@ -1,9 +1,10 @@
 <% provide(:title, '授業回選択画面') %>
-<h1>授業回選択画面</h1>
+<h1>管理者_授業回選択画面</h1>
 
-<% @lecture_times.each do |lecture_times| %>
+<%# コントローラで @lecture_times に目的の授業の最新年のものが入っている %>
+<% @lecture_times.each do |lecture_time| %>
   <li>
-    <%= link_to lecture_times.title, '#' %>
+    <%= link_to lecture_time.title, progresses_lecture_time_path(lecture_time) %>
   </li>
 <% end %>
 

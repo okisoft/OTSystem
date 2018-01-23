@@ -21,6 +21,6 @@ class LectureYearsController < ApplicationController
   private
 
     def lecture_year_params
-      params.require(:lecture_year).permit(:year, :style, lecture_times_attributes: [:title, :time])
+      params.require(:lecture_year).permit(:year, :style, lecture_times_attributes: [:title, :time, :_destroy])
     end
 end

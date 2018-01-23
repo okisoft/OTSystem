@@ -2,6 +2,9 @@ class User < ApplicationRecord
   has_many :students
   has_many :questions
   has_many :lecture_years, through: :students
+  has_many :achievments
+  has_many :progresses
+  has_many :problems, through: :achievments
 
   validates :user_id,     presence: true,
                           length: { maximum: 32 },
@@ -17,6 +20,10 @@ class User < ApplicationRecord
                           length: { in: 6..64 }
 
   has_secure_password
+
+  def icon(lecture_time)
+    self.progresses.find_by(lecture_time_id: lecture_time.id).icon
+  end
 
   def admin?
     self.authority == 1
