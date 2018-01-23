@@ -10,6 +10,6 @@ class Problem < ApplicationRecord
                         length: { maximum: 512}
 
   def achievment?(user)
-    !self.users.find_by(id: user.id).nil?
+    self.achievments.find_by(user_id: user.id).achieved
   end
 end
