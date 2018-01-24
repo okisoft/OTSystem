@@ -9,12 +9,10 @@
       <%= f.label :style, "授業形態" %>
       <%= f.select :style, [["個人", "個人"], ["グループ", "グループ"]], class: 'form-control' %>
 
-      <div class="field">
-        <%= f.fields_for :lecture_times do |ly| %>
-          <%= render "lecture_time_fields", f: ly %>
-        <% end %>
-        <%= link_to_add_fields "授業を追加する", f, :lecture_times %>
-      </div>
+      <table id="lecture_times">
+        <%= f.fields_for :lecture_times, wrapper: false %>
+      </table>
+      <%= f.link_to_add "授業を追加する", :lecture_times, data: {target: "#lecture_times"} %>
       <%= f.submit "Create lecture", class: "btn btn-primary" %>
     <% end %>
   </div>

@@ -1,10 +1,7 @@
-<fieldset>
-  <tr class="fields">
-    <td><%= f.label :title, "授業タイトル" %>
-    <td><%= f.text_field :title %><br />
-    <td><%= f.label :time, "課題数" %>
-    <td><%= f.text_field :time %><br />
-    <td><%= f.hidden_field :_destroy %>
-    <td><%= f.link_to_remove "削除" %>
-  </tr>
-</fieldset>
+<tr class="fields">
+  <td><%= f.label :title, "授業タイトル" %></td>
+  <td><%= f.text_field :title %></td>
+  <td><%= f.label :time, "課題数" %></td>
+  <td><%= f.text_field :time %></td>
+  <td><%= f.link_to_remove "削除" %></td>
+</tr>
