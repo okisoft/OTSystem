@@ -8,15 +8,17 @@
     <%= link_to "質問一覧", questions_lecture_time_path(@lecture_time), class: "btn btn-primary" %>
 
     <% @users.each do |user| %>
-      <li>
-        <%= user.user_id %>
-        <%= user.name %>
-        <%= user.icon(@lecture_time) %>
+      <% if !user.nil? %>
+        <li>
+          <%= user.user_id %>
+          <%= user.name %>
+          <%#= user.icon(@lecture_time) %>
 
-        <% @problems.each do |problem| %>
-          <%= problem.achievment?(user) %>
-        <% end %>
-      </li>
+          <% @problems.each do |problem| %>
+            <%= problem.achievment?(user) %>
+          <% end %>
+        </li>
+      <% end %>
     <% end %>
   </div>
 </div>
