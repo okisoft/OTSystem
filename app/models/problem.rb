@@ -6,8 +6,7 @@ class Problem < ApplicationRecord
 
   validates :name,      presence: true,
                         length: { maximum: 8 }
-  validates :content,   presence: true,
-                        length: { maximum: 512}
+  validates :content,   length: { maximum: 512}
 
   def achievment?(user)
     self.achievments.find_by(user_id: user.id).achieved
