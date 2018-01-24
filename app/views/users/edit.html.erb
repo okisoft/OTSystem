@@ -61,9 +61,9 @@
           </div>
 
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-            <div class="form-group">
+            <div class="form-group" style="font-size:24px;">
                   <% authoritys = [['教師', 1], ['アシスタント', 2], ['学生', 3]]%>
-                <%= f.select :authority, authoritys, selected: current_user.authority,class: 'form-control'%>
+                <%= f.select :authority, authoritys, selected: current_user.authority, class: 'form-control'%>
               <br><br>
             </div>
           </div>
