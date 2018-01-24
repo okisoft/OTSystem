@@ -106,11 +106,13 @@ lecture_time_id = PublicLecture.first.lecture_time.id
 end
 
 puts "Make Achievment"
+=begin
 user_id = User.find_by(authority: 3).id
 problem_id = Problem.find(79).id
 Achievment.create(
   user_id: user_id,
   problem_id: problem_id
+
 )
 problem_id = Problem.find(81).id
 Achievment.create(
@@ -123,6 +125,7 @@ Achievment.create(
   user_id: user_id,
   problem_id: problem_id
 )
+=end
 
 =begin
 puts "Group"
