@@ -8,16 +8,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.authority = 3
     if !current_user.nil? && current_user.admin?
       @user = User.new(admin_params)
+    else
+      @user.authority = 3
     end
     if @user.save
       flash[:success] = "登録しました"
-      log_in @user
-      if @user.admin?
+      if !current_user.nil? && current_user.admin?
         redirect_to admin_path
       else
+        log_in @user
         redirect_to home_path
       end
     else
