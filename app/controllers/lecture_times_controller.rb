@@ -25,7 +25,13 @@ class LectureTimesController < ApplicationController
   end
 
   def public_lectures_destroy
-    PublicLecture.first.destroy
+    #publicのnil埋め
+    public_lecture = PublicLecture.all
+    public_lecture.update(
+      user_id: nil,
+      lecture_id: nil,
+      lecture_time_id: nil
+    )
     flash[:success] = "PulicLecture destroyed."
     redirect_to admin_url
   end
