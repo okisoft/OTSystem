@@ -1,19 +1,35 @@
 <% provide(:title, "ログイン") %>
-<h1>ログイン</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:sessions, url: login_path) do |f| %>
-
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card rounded">
+                        <div class="card-header text-center">
+                            <h3 class="mb-0">ログイン</h3>
+                        </div>
+                            <%= form_for(:sessions, url: login_path) do |f| %>
+                        <div class="card-body">
+                            <form autocomplete="off">
+                                <div class="form-group">
       <%= f.label :user_id, "ユーザID" %>
-      <%= f.text_field :user_id, class: 'form-control' %>
-
-      <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.submit "ログイン", class: "btn btn-primary" %>
-    <% end %>
-
-    <p><%= link_to "アカウントを作成する", signup_path %></p>
+      <%= f.text_field :user_id, class: 'form-control form-control-lg rounded' %>
   </div>
+  <div class="form-group">
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: 'form-control form-control-lg rounded'%>
+  </div>
+      <%= f.submit "ログイン", class: "btn btn-primary btn-lg float-right" %>
+
+      <%= link_to "アカウントを作成する", signup_path , class: "btn btn-primary btn-lg float-left"  %>
+        </form>
+        <br>
+        <br>
+        <% end %>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>

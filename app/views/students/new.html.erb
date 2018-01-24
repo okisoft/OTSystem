@@ -1,8 +1,24 @@
 <% provide(:title, "授業登録画面") %>
-<h1>授業登録画面</h1>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card rounded">
+                        <div class="card-header text-center">
+                            <h3 class="mb-0">履修登録</h3>
+                        </div>
+                        <div class="card-body text-center">
+                              <%= form_for(:students, url: students_path) do |f| %>
+                                <%= f.hidden_field :cerf, value: "yes" %>
+                                  <%= f.submit "登録する", class: "btn btn-primary btn-lg" %>
 
-<%= form_for(:students, url: students_path) do |f| %>
-  <%= f.hidden_field :cerf, value: "yes" %>
 
-  <%= f.submit "登録する", class: "btn btn-primary" %>
-<% end %>
+                        </div>
+                              <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
