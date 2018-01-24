@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20180115062512) do
   create_table "achievments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "problem_id"
+    t.boolean "achieved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["problem_id"], name: "index_achievments_on_problem_id"

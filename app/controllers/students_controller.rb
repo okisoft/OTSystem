@@ -15,6 +15,16 @@ class StudentsController < ApplicationController
           user_id: current_user.id
         )
       end
+      public_lecture.lecture_time.problems.each do |prb|
+        Achievment.find_or_create_by(
+          user_id: current_user.id,
+          problem_id: prb.id
+        ) do |achv|
+          achv.achieved = false
+        end
+      end
+      binding.pry
+
       redirect_to home_path
     end
   end
