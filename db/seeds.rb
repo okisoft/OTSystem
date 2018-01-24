@@ -95,15 +95,15 @@ puts "Make Student"
 # )
 
 puts "Make Progress"
-lecture_time_id = PublicLecture.first.lecture_time.id
-(2..6).each do |i|
-  user_id = User.find_by(id: i,authority: 3).id
-  Progress.create(
-    lecture_time_id: lecture_time_id,
-    user_id: user_id,
-    icon: 1
-  )
-end
+# lecture_time_id = PublicLecture.first.lecture_time.id
+# (2..6).each do |i|
+#   user_id = User.find_by(id: i,authority: 3).id
+#   Progress.create(
+#     lecture_time_id: lecture_time_id,
+#     user_id: user_id,
+#     icon: 1
+#   )
+# end
 
 puts "Make Achievment"
 =begin

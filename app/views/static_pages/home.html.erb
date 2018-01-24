@@ -22,11 +22,10 @@
   <% end %>
 <% end %>
 
-<% @achievments.each do |achievment| %>
-  <%= form_for(achievment) do |f| %>
+<% @achievments.each do |a| %>
+  <%= form_for(a) do |f| %>
     <%= f.label :achieved %>
     <%= f.check_box :achieved, {}, "true", "false" %>
-
     <%= f.submit "送信する", class: "btn btn-large btn-primary" %>
   <% end %>
 <% end %>
