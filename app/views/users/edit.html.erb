@@ -53,9 +53,21 @@
         </div>
 
         <% if !current_user.nil? && current_user.admin? %>
-          <% authoritys = [['教師', 1], ['アシスタント', 2], ['学生', 3]] %>
-          <%= f.label :authority %>
-          <%= f.select :authority, authoritys, selected: current_user.authority, class: 'form-control' %>
+        <div class="row">
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 tourokujoho" align="left">
+            <%= f.label :authority ,"権限" %>
+
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="form-group">
+                  <% authoritys = [['教師', 1], ['アシスタント', 2], ['学生', 3]]%>
+                <%= f.select :authority, authoritys, selected: current_user.authority,class: 'form-control'%>
+              <br><br>
+            </div>
+          </div>
+        </div>
         <% end %>
 
 
