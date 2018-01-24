@@ -16,7 +16,7 @@ class StaticPagesController < ApplicationController
       render_404
     else
       public_lecture = PublicLecture.first
-      if public_lecture.lecture_time_id.nil?
+      if public_lecture.nil?
         render_not_open
       else
         @lecture = Lecture.find_by(id: public_lecture.lecture_id)

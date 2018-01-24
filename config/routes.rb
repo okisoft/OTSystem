@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'questions', to: 'lecture_times#questions_index'
       get 'progresses', to: 'lecture_times#progresses_index'
       get 'problems', to: 'lecture_times#problems_index'
+      get 'public_lectures_destroy', to: 'lecture_times#public_lectures_destroy'
     end
   end
   resources :questions, only: [:create, :new, :edit, :update]

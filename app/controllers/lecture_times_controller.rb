@@ -23,4 +23,10 @@ class LectureTimesController < ApplicationController
     lecture_time = LectureTime.find(params[:id])
     @problems = lecture_time.problems.all
   end
+
+  def public_lectures_destroy
+    PublicLecture.first.destroy
+    flash[:success] = "PulicLecture destroyed."
+    redirect_to admin_url
+  end
 end
