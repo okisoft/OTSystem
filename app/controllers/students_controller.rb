@@ -23,8 +23,6 @@ class StudentsController < ApplicationController
           achv.achieved = false
         end
       end
-      binding.pry
-
       redirect_to home_path
     end
   end
