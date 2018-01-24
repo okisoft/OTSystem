@@ -10,7 +10,7 @@ class LectureTimesController < ApplicationController
     @problems = @lecture_time.problems
 
     #publicの更新
-    public_lecture = PublicLecture.all
+    public_lecture = PublicLecture.first
     if public_lecture.nil?
       PublicLecture.create(
         user_id: current_user.id,
