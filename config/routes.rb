@@ -32,5 +32,6 @@ Rails.application.routes.draw do
   end
   resources :questions, only: [:create, :new, :edit, :update]
   resources :problems, only: [:edit, :update]
+  resources :progresses, only: [:update]
   resources :achievments, only: [:update]
 end
