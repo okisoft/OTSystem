@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   post    '/login',      to: 'sessions#create'
   delete  '/logout',     to: 'sessions#destroy'
   resources :users, only: [:create, :new, :edit, :update]
-  put     '/users/:id/achievments', to: 'users#achievments_update',   as: 'achievments_user'
   resources :students, only: [:create, :new]
   resources :lectures, only: [:create, :new] do
     member do
@@ -33,4 +32,5 @@ Rails.application.routes.draw do
   end
   resources :questions, only: [:create, :new, :edit, :update]
   resources :problems, only: [:edit, :update]
+  resource :achievments, only: [:update]
 end

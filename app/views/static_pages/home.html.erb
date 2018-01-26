@@ -22,23 +22,11 @@
   <% end %>
 <% end %>
 
-<%= form_tag achievments_user_path(current_user.id), { method: :put } do %>
-<table border='1'style="border-collapse:collapse">
-  <thead>
-    <tr>
-      <% if params[:action] = 'select' %>
-        <th>Achieve</th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @achievments.each do |achievment| %>
-      <tr>
-        <% # 配列 approved にinterview.idを追加 %>
-        <td><%= check_box_tag('update[]', achievment.id)%></td>
-      </tr>
+<%= form_tag achievments_path, method: :put do %>
+  <% @achievments.each do |achievment| %>
+    <%= fields_for "achievments[]", achievment do |f| %>
+      check:<%= f.check_box :achieved %>
     <% end %>
-  </tbody>
-</table>
-<%= submit_tag :achieved %>
+  <% end %>
+  <%= submit_tag %>
 <% end %>

@@ -48,15 +48,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def achievments_update
-    @achievments = Achievment.where(id: params[:update])
-    @achievments.each do |achievment|
-      achievment.achieved = true
-      achievment.save
-    end
-    redirect_to home_path
-  end
-
   private
 
     def user_params
