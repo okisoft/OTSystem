@@ -22,10 +22,23 @@
   <% end %>
 <% end %>
 
-<% @achievments.each do |a| %>
-  <%= form_for(a) do |f| %>
-    <%= f.label :achieved %>
-    <%= f.check_box :achieved, {}, "true", "false" %>
-    <%= f.submit "送信する", class: "btn btn-large btn-primary" %>
-  <% end %>
+<%= form_tag achievments_user_path(current_user.id), { method: :put } do %>
+<table border='1'style="border-collapse:collapse">
+  <thead>
+    <tr>
+      <% if params[:action] = 'select' %>
+        <th>Achieve</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @achievments.each do |achievment| %>
+      <tr>
+        <% # 配列 approved にinterview.idを追加 %>
+        <td><%= check_box_tag('update[]', achievment.id)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= submit_tag :achieved %>
 <% end %>
