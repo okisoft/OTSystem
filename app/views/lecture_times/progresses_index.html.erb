@@ -12,11 +12,12 @@
         <li>
           <%= user.user_id %>
           <%= user.name %>
-          <%#= user.icon(@lecture_time) %>
 
           <% @problems.each do |problem| %>
-            <%= problem.achievment?(user) %>
+            <%= problem.achievment?(user) %> <%# 達成状況を表示 %>
           <% end %>
+
+          <%= user.icon(@lecture_time) %>　<%# アイコン表示 %>
         </li>
       <% end %>
     <% end %>
