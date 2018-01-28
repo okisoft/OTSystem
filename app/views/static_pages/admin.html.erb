@@ -1,33 +1,5 @@
 <% provide(:title, '管理者ホーム') %>
-<header>
-  <nav class="navbar navbar-expand-md bg-success col-12 col-lg-12">
-    <div class="container">
-      <button class="navbar-toggler navbar-toggler-right burger-menu" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-bar"></span>
-        <span class="navbar-toggler-bar"></span>
-        <span class="navbar-toggler-bar"></span>
-      </button>
 
-      <!-- logo(ホーム画面へのリンク) -->
-        <a href="#" class="logo col-2 col-lg-2"><%= image_tag 'otlogoBlueBig.png' %></a>
-
-        <p class="text-white col-8 col-lg-4">オペレーティングシステムオペレーティングシステムオペレーティング<br>第1回公開中</p>
-      <div class="collapse navbar-collapse" id="navbar-primary">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><!-- 教師権限のみ表示 -->
-            <a class="nav-link" href="#"><i class="nc-icon nc-lock-circle-open" aria-hidden="true"></i>&nbsp;非公開</a>
-          </li>
-          <li class="nav-item"><!-- ユーザ情報変更 -->
-            <a class="nav-link" href="#"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;〇〇さん</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="nc-icon nc-user-run" aria-hidden="true"></i>&nbsp;ログアウト</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
@@ -46,7 +18,7 @@
     <div class="col-lg-1"></div>
     <div class="col-lg-4">
       <% @lectures.each do |lecture| %>
-        <li>
+        <li style="list-style:none;margin-bottom: 10px;">
           <%= link_to lecture.name, times_lecture_path(lecture), class: "h4"  %>
         </li>
         <% end %>
@@ -54,13 +26,13 @@
 
     <div class="col-lg-7" align="center">
 
-        <%= link_to "授業新規作成", new_lecture_path, class: "btn btn-primary" %>
+        <%= link_to "授業新規作成", new_lecture_path, class: "btn btn-primary col-7 col-lg-5 btn-lg" %>
         <br><br>
-        <%= link_to "アカウント新規登録", signup_path, class: "btn btn-primary" %>
+        <%= link_to "アカウント新規登録", signup_path, class: "btn btn-primary col-7 col-lg-5 btn-lg" %>
         <br><br>
-        <%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary" %>
+        <%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary col-7 col-lg-5 btn-lg" %>
         <br><br>
-        <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
+        <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary col-7 col-lg-5 btn-lg" %>
 
     </div>
 

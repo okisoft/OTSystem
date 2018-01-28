@@ -7,20 +7,17 @@
     <div class="col-md-12">
       <br>
   <div class="row justify-content-center">
-      <div class="col-md-7" style="border-style: solid ; border-width: 1px; color: green;">
+      <div class="col-md-8" style="border-style: solid ; border-width: 1px; color: green;">
         <div class="row justify-content-center">
-            <div class="col-md-3">
-              <%= link_to "質問をする", new_question_path, class: "btn btn-primary" %>
+            <div class="col-md-4">
+              <%= link_to "質問をする", new_question_path, class: "btn btn-primary " %>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
               <%= link_to "過去の質問閲覧", years_lecture_path(@lecture), id: @lecture_id, class: "btn btn-primary" %>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary" %>
-            </div>
-            <div class="col-md-3">
-              <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
             </div>
 
       </div>
@@ -42,17 +39,16 @@
       <% questions = problem.questions %>
       <% questions.each do |question| %>
         <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
-          <li>
+          <li style="list-style:none;margin-bottom: 10px;">
+          <div class="col-md-12">
             <%= question.problem.name %>
-            <%= question.user.id %>
-            <%= question.content %>
+            <%= question.content %><%#この辺頭こんがらかっ河ががったので一旦放置%>
             <%= question.reply %>
+          </div>
           </li>
         <% end %>
       <% end %>
     <% end %>
-
-
 
     </div>
       <div class="col-md-4">
@@ -60,7 +56,6 @@
           <%= form_for(achievment) do |f| %>
             <%= f.label :achieved %>
             <%= f.check_box :achieved, {}, "true", "false" %>
-
             <%= f.submit "送信する", class: "btn btn-large btn-primary" %>
           <% end %>
         <% end %>

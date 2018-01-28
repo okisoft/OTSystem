@@ -7,8 +7,8 @@
       <h2 class="page-title">年度選択</h2>
     </div><!-- row -->
     <% @lecture_years.each do |lecture_year| %>
-      <li>
-        <%= link_to lecture_year.year, times_lecture_year_path(lecture_year),class: "btn btn-primary btn-lg " %>
+      <li style="list-style:none;margin-bottom: 10px;">
+        <%= link_to lecture_year.year, times_lecture_year_path(lecture_year),class: "btn btn-primary btn-lg col-7 col-lg-5" %>
       </li>
     <% end %>
 
