@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <nav class="navbar navbar-expand-md bg-success col-12 col-lg-12">
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right burger-menu" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar"></span>
+          <span class="navbar-toggler-bar"></span>
+          <span class="navbar-toggler-bar"></span>
+        </button>
+
+        <!-- logo(ホーム画面へのリンク) -->
+          <a href="#" class="logo col-2 col-lg-2"><%= image_tag 'otlogoBlueBig.png' %></a>
+
+          <p class="text-white col-8 col-lg-4">オペレーティングシステムオペレーティングシステムオペレーティング<br>第1回公開中</p>
+        <div class="collapse navbar-collapse" id="navbar-primary">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><!-- 教師権限のみ表示 -->
+              <a class="nav-link" href="#"><i class="nc-icon nc-lock-circle-open" aria-hidden="true"></i>&nbsp;非公開</a>
+            </li>
+            <li class="nav-item"><!-- ユーザ情報変更 -->
+              <a class="nav-link" href="#"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;〇〇さん</a>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", logout_path, method: :delete %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all',
                                'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application',
                                'data-turbolinks-track': 'reload' %>
-    <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
   </head>
   <body>
     <div class="container">
