@@ -21,6 +21,17 @@
             <li class="nav-item"><!-- ユーザ情報変更 -->
               <a class="nav-link" href="#"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;〇〇さん</a>
             </li>
+            <% if logged_in? %>
+              <% if current_user.admin? %>
+                <li class="nav-item">
+                  <%= link_to "ホーム画面に戻る", admin_path %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "ホーム画面に戻る", home_path %>
+                </li>
+              <% end %>
+            <% end %>
             <li class="nav-item">
               <%= link_to "ログアウト", logout_path, method: :delete %>
             </li>
