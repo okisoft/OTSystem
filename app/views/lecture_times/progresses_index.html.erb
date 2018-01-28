@@ -16,7 +16,8 @@
           <%= problem.achievment?(user) %> <%# 達成状況を表示 %>
         <% end %>
 
-        <%= user.icon(@lecture_time) %>　<%# アイコン表示 %>
+        <%= user.icon(@lecture_time) %> <%# アイコン表示 %>
+        <%= user.count_not_reply_question(@problems) %> <%# 未回答の質問数を表示 %>
       </li>
     <% end %>
   </div>
