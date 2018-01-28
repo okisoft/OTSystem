@@ -1,6 +1,7 @@
 <% provide(:title, '年度選択画面') %>
 <h1>年度選択画面</h1>
 
+<%= @lecture_years.first.lecture.name %>
 <% @lecture_years.each do |lecture_year| %>
   <li>
     <%= link_to lecture_year.year, times_lecture_year_path(lecture_year) %>

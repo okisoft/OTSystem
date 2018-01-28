@@ -1,6 +1,9 @@
 <% provide(:title, '授業回選択画面') %>
 <h1>学生_授業回選択画面</h1>
 
+<%= @lecture_times.first.lecture_year.lecture.name %>
+<%= @lecture_times.first.lecture_year.year %>
+
 <% @lecture_times.each do |lecture_time| %>
   <li>
     <%= link_to lecture_time.title, questions_lecture_time_path(lecture_time) %>

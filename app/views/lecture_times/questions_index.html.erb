@@ -8,6 +8,8 @@
 
 <% @question = Question.new unless @question %>
 
+<%= @problems.first.lecture_time.title %>
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <% if current_user.admin? %> <%# 管理者用のパーツを表示する %>
