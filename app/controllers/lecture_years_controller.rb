@@ -6,25 +6,15 @@ class LectureYearsController < ApplicationController
 
   def lecture_times_create
     @lecture_year = LectureYear.find(params[:id])
-
     if @lecture_year.update_attributes(lecture_year_params)
-      # 課題数を取り出す
-      lecture_times_params = params[:lecture_year][:lecture_times_attributes]
-      i = 0
-      lecture_times_params.keys.each do |key|
-        time_ = lecture_times_params[key][:time].to_i #課題数
-        lecture_time_id = @lecture_year.lecture_times[i].id
-        time_.times do |t|
-          problem = Problem.new(
-            lecture_time_id: lecture_time_id,
-            name: "課題#{t + 1}",
-            content: ""
-          )
-          problem.save
+      @lecture_year.lecture_times.each_with_index do |lt, i|
+        lt.update(time: i + 1)
+        lt.problem_num = 1 if lt.problem_num.to_i == 0
+        lt.problem_num.to_i.times do |j|
+          Problem.create(lecture_time_id: lt.id, name: "課題#{j + 1}")
         end
-        i += 1
       end
-      redirect_to admin_path
+      redirect_to times_lecture_year_path(@lecture_year)
     else
       render 'lecture_times_new'
     end
@@ -38,6 +28,6 @@ class LectureYearsController < ApplicationController
   private
 
     def lecture_year_params
-      params.require(:lecture_year).permit(:year, :style, lecture_times_attributes: [:title, :time, :_destroy])
+      params.require(:lecture_year).permit(:year, :style, lecture_times_attributes: [:id, :title, :problem_num, :_destroy])
     end
 end

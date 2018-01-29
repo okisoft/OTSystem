@@ -12,7 +12,8 @@ class StudentsController < ApplicationController
       public_lecture.lecture_time.lecture_year.lecture_times.each do |lt|
         Progress.find_or_create_by(
           lecture_time_id: lt.id,
-          user_id: current_user.id
+          user_id: current_user.id,
+          icon: 0
         )
         lt.problems.each do |prb|
           Achievment.find_or_create_by(

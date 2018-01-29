@@ -20,21 +20,30 @@
               <%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary" %>
             </div>
 
-      </div>
+    </div>
 
-      <div class="row justify-content-center">
-          <div class="col-md-4">
-            <font size="5">カテゴリ</font>
-          </div>
-          <div class="col-md-4">
-            <font size="5">質問内容</font>
-          </div>
-          <div class="col-md-4">
-            <font size="5">回答</font>
-          </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+          <font size="5">カテゴリ</font>
+        </div>
+        <div class="col-md-4">
+          <font size="5">質問内容</font>
+        </div>
+        <div class="col-md-4">
+          <font size="5">回答</font>
+        </div>
 
     </div>
-　　
+
+
+    <%= form_for @progress do |f| %>
+      <label><%= f.radio_button :icon, 0 %> なし </label>
+      <label><%= f.radio_button :icon, 1 %> 確認してもらう </label>
+      <label><%= f.radio_button :icon, 2 %> 緊急 </label>
+      <%= f.submit "送信する", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    <%# 質問の一覧を表示する %>
     <% @problems.each do |problem| %>
       <% questions = problem.questions %>
       <% questions.each do |question| %>
@@ -50,26 +59,21 @@
       <% end %>
     <% end %>
 
+
     </div>
-      <div class="col-md-4">
-        <% @achievments.each do |achievment| %>
-          <%= form_for(achievment) do |f| %>
-            <%= f.label :achieved %>
-            <%= f.check_box :achieved, {}, "true", "false" %>
-            <%= f.submit "送信する", class: "btn btn-large btn-primary" %>
-          <% end %>
+    <%= form_tag achievments_path, method: :put do %>
+      <% @achievments.each do |achievment| %>
+        <%= fields_for "achievments[]", achievment do |f| %>
+          check:<%= f.check_box :achieved %>
         <% end %>
-        <br>
-        </div>
+      <% end %>
+      <%= submit_tag %>
+    <% end %>
 
-      </div>
+
 </div>
 </div>
 </div>
-
 </div>
 
-
-
-
-<%# 質問の一覧を表示する %>
+</div>
