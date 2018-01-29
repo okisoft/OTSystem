@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-md bg-success col-12 col-lg-12">
+  <div class="container">
+
+    <%# logo(ホーム画面へのリンク) %>
+    <%= link_to image_tag('otlogoBlueBig.png'), root_path, class: "logo col-2 col-lg-2" %>
+    <% public_lecture = PublicLecture.first %>
+    <% if !public_lecture.nil? %>
+      <p class="text-white col-8 col-lg-4">
+        <%= public_lecture.lecture.name %><br>
+        第<%= public_lecture.lecture_time.time %>回公開中
+      </p>
+    <% else %>
+      <p class="text-white col-8 col-lg-4">
+        現在公開されている授業はありません
+      </p>
+    <% end %>
+
+    <div class="collapse navbar-collapse" id="navbar-primary">
+      <ul class="navbar-nav ml-auto">
+        <% if logged_in? %>
+          <%# 教師権限のみ表示 %>
+          <% if current_user.admin? && !PublicLecture.first.nil? %>
+            <li class="nav-item">
+              <%= link_to public_lecture_path, method: :delete, class: "nav-link" do %>
+                <i class="nc-icon nc-lock-circle-open" aria-hidden="true"></i>非公開
+              <% end %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%# ユーザ情報変更 %>
+            <%= link_to edit_user_path(current_user), class: "nav-link" do %>
+              <i class="nc-icon nc-single-02" aria-hidden="true"></i><%= current_user.name %>さん
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to logout_path, method: :delete, class: "nav-link" do %>
+              <i class="nc-icon nc-user-run" aria-hidden="true"></i>ログアウト
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
