@@ -1,39 +1,28 @@
 class LectureTimesController < ApplicationController
-  def questions_index
-    lecture_time = LectureTime.find(params[:id])
-    @problems = lecture_time.problems.all
+
+  def index
+    @lecture_year = LectureYear.find(params[:lecture_year_id])
+    @lecture_times = @lecture_year.lecture_times
   end
 
-  def progresses_index
+  def edit
     @lecture_time = LectureTime.find(params[:id])
-    @users = @lecture_time.lecture_year.users
-    @problems = @lecture_time.problems
+  end
 
-    #publicの更新
-    public_lecture = PublicLecture.first
-    if public_lecture.nil?
-      PublicLecture.create(
-        user_id: current_user.id,
-        lecture_id: @lecture_time.lecture_year.lecture.id,
-        lecture_time_id: @lecture_time.id
-      )
+  def update
+    @lecture_time = LectureTime.find(params[:id])
+    if @lecture_time.update_attributes(lecture_time_params)
+      flash[:succeess] = "登録しました"
+      redirect_to lecture_year_lecture_times_path(@lecture_time.lecture_year)
     else
-      public_lecture.update(
-        user_id: current_user.id,
-        lecture_id: @lecture_time.lecture_year.lecture.id,
-        lecture_time_id: @lecture_time.id
-      )
+      flash[:danger] = "失敗しました"
+      render 'edit'
     end
   end
 
-  def problems_index
-    lecture_time = LectureTime.find(params[:id])
-    @problems = lecture_time.problems.all
-  end
+  private
 
-  def public_lectures_destroy
-    PublicLecture.first.destroy
-    flash[:success] = "PulicLecture destroyed."
-    redirect_to admin_url
-  end
+    def lecture_time_params
+      params.require(:lecture_time).permit(:title, problems_attributes: [:id, :name, :content, :_destroy])
+    end
 end
