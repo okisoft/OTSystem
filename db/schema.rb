@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180115062512) do
 
   create_table "lecture_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "lecture_year_id", null: false
-    t.integer "time", null: false
+    t.integer "time", default: 1
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

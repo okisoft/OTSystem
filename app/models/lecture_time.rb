@@ -3,8 +3,16 @@ class LectureTime < ApplicationRecord
   has_many :problems
   has_many :progresses
 
-  validates   :time,            presence: true,
-                                length: { in: 0..255 }
+  attr_accessor :problem_num
+
+  validates   :time,            numericality: {
+                                  greater_than: 0,
+                                  less_than: 256
+                                }
   validates   :title,           presence: true,
                                 length: { maximum: 32 }
+  validates   :problem_num,     format: {
+                                  with: /\A\d+\z/,
+                                  allow_blank: true
+                                }
 end

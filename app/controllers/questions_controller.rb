@@ -1,17 +1,14 @@
 class QuestionsController < ApplicationController
   def new
     @question = Question.new
-    problems = Problem.where(lecture_time_id: PublicLecture.first.lecture_time_id)
-
-    @problems_array = []
-    problems.each do |pr|
-      @problems_array.push([pr.name, pr.id])
-    end
   end
 
   def create
     @question = Question.new(question_params)
-    if @question.save
+    @question.user_id = current_user.id
+    problems = Problem.where(lecture_time_id: PublicLecture.first.lecture_time_id)
+    problem_ids = problems.map { |p| p.id }
+    if problem_ids.include?(@question.problem_id) && @question.save
       flash[:succeess] = "登録しました"
       redirect_to home_path
     else
@@ -37,6 +34,6 @@ class QuestionsController < ApplicationController
   private
 
     def question_params
-      params.require(:question).permit(:problem_id, :user_id, :content, :reply, :visible)
+      params.require(:question).permit(:problem_id, :content, :reply, :visible)
     end
 end
