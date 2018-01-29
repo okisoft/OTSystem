@@ -6,8 +6,10 @@
 <%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary" %>
 <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
 
-<% @lectures.each do |lecture| %>
+<% @lectures.each do |l| %>
   <li>
-    <%= link_to lecture.name, times_lecture_path(lecture) %>
+    <%= link_to l.name, lecture_year_lecture_times_path(l.latest_year) %>
+    <%= link_to "編集", edit_lecture_path(l) %>
+    <%= link_to "過去", lecture_lecture_years_path(l) %>
   </li>
 <% end %>

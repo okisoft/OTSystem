@@ -3,9 +3,8 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= link_to "課題編集", problems_lecture_time_path(@lecture_time), class: "btn btn-primary" %>
-    <%= link_to "授業終了", public_lectures_destroy_lecture_time_path, class: "btn btn-primary" %>
-    <%= link_to "質問一覧", questions_lecture_time_path(@lecture_time), class: "btn btn-primary" %>
+    <%= link_to "授業終了",  public_lecture_path, method: :delete, class: "btn btn-primary" %>
+    <%= link_to "質問一覧", lecture_time_questions_path(@lecture_time), class: "btn btn-primary" %>
 
     <% @users.each do |user| %>
       <li>

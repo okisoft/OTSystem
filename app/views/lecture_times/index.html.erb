@@ -1,0 +1,15 @@
+<% provide(:title, '授業回選択画面') %>
+<h1>授業回選択画面</h1>
+
+<% @lecture_times.each do |lecture_time| %>
+  <li>
+    第<%= lecture_time.time %>回
+    <% if @lecture_year.latest? %>
+      <%= link_to lecture_time.title, lecture_time_progresses_path(lecture_time) %>
+      <%= link_to "編集", edit_lecture_time_path(lecture_time) %>
+    <% else %>
+      <%= link_to lecture_time.title, lecture_time_questions_path(lecture_time) %>
+    <% end %>
+    課題数<%= lecture_time.problems.count %>
+  </li>
+<% end %>

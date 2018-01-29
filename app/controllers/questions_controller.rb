@@ -1,4 +1,9 @@
 class QuestionsController < ApplicationController
+  def index
+    lecture_time = LectureTime.find(params[:lecture_time_id])
+    @problems = lecture_time.problems.all
+  end
+
   def new
     @question = Question.new
   end
@@ -25,7 +30,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     if @question.update_attributes(question_params)
       @lecture_time = @question.problem.lecture_time
-      redirect_to questions_lecture_time_path(@lecture_time.id)
+      redirect_to lecture_time_questions_path(@lecture_time)
     else
       render 'edit'
     end

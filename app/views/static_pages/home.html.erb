@@ -5,7 +5,7 @@
 <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
 
 <%= link_to "質問をする", new_question_path, class: "btn btn-primary" %>
-<%= link_to "過去の質問閲覧", years_lecture_path(@lecture), id: @lecture_id, class: "btn btn-primary" %>
+<%= link_to "過去の質問閲覧", lecture_lecture_years_path(@lecture), class: "btn btn-primary" %>
 
 <%= form_for @progress do |f| %>
   <label><%= f.radio_button :icon, 0 %> なし </label>

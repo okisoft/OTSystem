@@ -1,28 +1,27 @@
 class LectureYearsController < ApplicationController
-  def lecture_times_new
-    @lecture_year = LectureYear.find(params[:id])
+  def index
+    lecture = Lecture.find(params[:lecture_id])
+    @lecture_years = lecture.lecture_years.reverse
+  end
+
+  def edit
+    lecture = Lecture.find(params[:id])
+    @lecture_year = lecture.latest_year
     @lecture_year.lecture_times.build
   end
 
-  def lecture_times_create
+  def update
     @lecture_year = LectureYear.find(params[:id])
     if @lecture_year.update_attributes(lecture_year_params)
       @lecture_year.lecture_times.each_with_index do |lt, i|
         lt.update(time: i + 1)
-        lt.problem_num = 1 if lt.problem_num.to_i == 0
-        lt.problem_num.to_i.times do |j|
-          Problem.create(lecture_time_id: lt.id, name: "課題#{j + 1}")
-        end
       end
-      redirect_to times_lecture_year_path(@lecture_year)
+      flash[:succeess] = "登録しました"
+      redirect_to lecture_year_lecture_times_path(@lecture_year)
     else
-      render 'lecture_times_new'
+      flash[:danger] = "失敗しました"
+      render 'edit'
     end
-  end
-
-  def lecture_times_index
-    lecture_year = LectureYear.find(params[:id])
-    @lecture_times = lecture_year.lecture_times
   end
 
   private
