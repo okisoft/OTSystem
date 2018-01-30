@@ -1,44 +1,37 @@
 <% provide(:title, '進捗一覧画面') %>
-<h1>進捗一覧画面</h1>
-
+<h3>進捗一覧画面</h3>
+<br>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= link_to "授業終了",  public_lecture_path, method: :delete, class: "btn btn-primary " %>
-    <%= link_to "質問一覧", lecture_time_questions_path(@lecture_time), class: "btn btn-primary" %>
-
-
-  <table border="1"  cellpadding="5" bordercolor="#333333">
-    <tr>
-<td width="300" align="center">ユーザID</th>
-<td width="300" align="center">氏名</th>
-    <% @problems.each do |problem| %>
-<td width="70" align="center">
- 課題
-</td>
-    <% end %>
-    <td width="80" align="center">状態</th>
-    <td width="80" align="center">？？</th>
-  </tr>
-</table>
-
-    <% @users.each do |user| %>
+    <%= link_to "授業終了",  public_lecture_path, method: :delete, class: "btn btn-primary ",style:"margin-bottom:10px;margin-right:10px;"  %>
+    <%= link_to "質問一覧", lecture_time_questions_path(@lecture_time), class: "btn btn-primary",style:"margin-bottom:10px;" %>
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
     <table border="1"  cellpadding="5" bordercolor="#333333">
-      <tr>
-
-
-        <td width="300" align="center"><%= user.user_id %></td>
-        <td width="300" align="center"><%= user.name %></td>
-
-        <% @problems.each do |problem| %>
-          <td width="70" align="center"><%= problem.achievment?(user) %></td> <%# 達成状況を表示 %>
+      <tr bgcolor="#8fe08f" style="color:#ffffff;">
+        <td width="300" align="center">ユーザID</td>
+        <td width="300" align="center">氏名</td>
+        <% @problems.each_with_index do |problem, i| %>
+          <td width="70" align="center">課題<%= i+1 %></td>
         <% end %>
-
-        <td width="80" align="center"><%= user.icon(@lecture_time) %></td> <%# アイコン表示 %>
-        <td width="80" align="center"><%= user.count_not_reply_question(@problems) %></td> <%# 未回答の質問数を表示 %>
-
-    </tr>
-    <% end %>
-  </table>
+        <td width="80" align="center">状態</td>
+          <td width="80" align="center">質問</td>
+      </tr>
+      <% @users.each do |user| %>
+        <tr bgcolor="#efffef" >
+          <td width="300" align="center"><%= user.user_id %></td>
+          <td width="300" align="center"><%= user.name %></td>
+          <% @problems.each do |problem| %>
+            <td width="150" align="center"><%= problem.achievment?(user) %></td> <%# 達成状況を表示 %>
+          <% end %>
+          <td width="100" align="center"><%= user.icon(@lecture_time) %></td> <%# アイコン表示 %>
+          <td width="100" align="center"><%= user.count_not_reply_question(@problems) %></td> <%# 未回答の質問数を表示 %>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </div>
