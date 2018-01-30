@@ -1,15 +1,15 @@
 <% if current_user.admin? %> <%# 管理者用のパーツを表示する %>
   <% provide(:title, '質問一覧画面') %>
-  <h1>質問一覧画面</h1>
+  <h3>質問一覧画面</h3>
 <% else %> <%# 学生用のパーツを表示する %>
   <% provide(:title, '過去の質問一覧画面') %>
-  <h1>過去の質問一覧画面</h1>
+  <h3>過去の質問一覧画面</h3>
 <% end %>
 
 <% @question = Question.new unless @question %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="row justify-content-center">
+  <div class="col-md-8">
     <% if current_user.admin? %> <%# 管理者用のパーツを表示する %>
     <% else %> <%# 学生用のパーツを表示する %>
       <%= link_to "質問をする", new_question_path(@question), class: "btn btn-primary" %>
@@ -19,7 +19,7 @@
       <% questions = problem.questions %>
       <% questions.each do |question| %>
         <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
-          <li>
+          <li style="list-style:none;margin-bottom: 10px;">
             <%= question.problem.name %>
             <%= question.user.id %>
             <%= question.content %>
