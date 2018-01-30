@@ -55,8 +55,6 @@
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-<% end %>
 
 <%= form_tag achievments_path, method: :put do %>
   <% @achievments.each do |achievment| %>
@@ -65,4 +63,5 @@
     <% end %>
   <% end %>
   <%= submit_tag %>
-<% end %>
+
+  <% end %>
