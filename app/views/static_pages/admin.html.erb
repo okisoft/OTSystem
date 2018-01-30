@@ -19,9 +19,9 @@
     <div class="col-lg-4">
       <% @lectures.each do |l| %>
         <li  style="list-style:none;margin-bottom: 10px;">
-            <%= link_to l.name, lecture_year_lecture_times_path(l.latest_year) %>
-            <%= link_to "編集", edit_lecture_path(l)%>
-            <%= link_to "過去の授業", lecture_lecture_years_path(l)%>
+            <%= link_to l.name, lecture_year_lecture_times_path(l.latest_year), class: "btn btn-primary col-5"  %>
+            <%= link_to "編集", edit_lecture_path(l), class: "btn btn-primary " %>
+            <%= link_to "過去の授業", lecture_lecture_years_path(l), class: "btn btn-primary " %>
         </li>
         <% end %>
     </div>
