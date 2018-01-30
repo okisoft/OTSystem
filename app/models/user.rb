@@ -25,6 +25,10 @@ class User < ApplicationRecord
     self.progresses.find_by(lecture_time_id: lecture_time.id).icon
   end
 
+  def count_not_reply_question(problem)
+    self.questions.where(problem_id: problem).where(reply: nil).count
+  end
+
   def admin?
     self.authority == 1
   end

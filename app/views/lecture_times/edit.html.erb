@@ -1,0 +1,17 @@
+<% provide(:title, '課題編集') %>
+<h1>授業回編集画面</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= nested_form_for(@lecture_time) do |f| %>
+      <%= f.label :title, "授業タイトル" %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <table id="problems">
+        <%= f.fields_for :problems, wrapper: false %>
+      </table>
+      <%= f.link_to_add "課題を追加する", :problems, data: {target: "#problems"} %>
+      <%= f.submit "Update lecture", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

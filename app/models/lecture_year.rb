@@ -11,6 +11,10 @@ class LectureYear < ApplicationRecord
                               inclusion: { in: %w(個人 グループ) }
   validate :check_year
 
+  def latest?
+    self.year == Date.today.financial_year
+  end
+
   private
 
     def check_year

@@ -4,10 +4,13 @@
 <div class="row justify-content-center">
   <div class="col-md-3" style="font-size:20px;">
     <%= form_for(@question) do |f| %>
+      <% problems = PublicLecture.first.lecture_time.problems %>
+      <% problem_array = problems.map { |p| [p.name, p.id] } %>
       <%= f.label :problem_id,"課題選択" %>
     </div>
     <div class="col-md-3" style="size:50px;">
-      <%= f.select :problem_id, @problems_array, selected: @problems_array.first.first, class: 'form-control' %>
+      <%= f.select :problem_id, problem_array, selected: problem_array[0][0], class: 'form-control' %>
+
       <%= f.hidden_field :user_id, value: current_user.id %>
 　</div>
 

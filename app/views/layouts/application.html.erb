@@ -1,47 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <nav class="navbar navbar-expand-md bg-success col-12 col-lg-12">
-      <div class="container">
-        <button class="navbar-toggler navbar-toggler-right burger-menu" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-bar"></span>
-          <span class="navbar-toggler-bar"></span>
-          <span class="navbar-toggler-bar"></span>
-        </button>
-
-        <!-- logo(ホーム画面へのリンク) -->
-          <a href="#" class="logo col-2 col-lg-2"><%= image_tag 'otlogoBlueBig.png' %></a>
-          <% public_lecture = PublicLecture.first %>
-          <% if !public_lecture.nil? %>
-            <p class="text-white col-8 col-lg-4">
-            <%= public_lecture.lecture.name %><br>
-            <%= "第" %><%= public_lecture.lecture_time.time %><%= "回公開中" %>
-            </p>
-          <% else %>
-            <p class="text-white col-8 col-lg-4">
-            <%= "現在公開されている授業はありません" %><br>
-            </p>
-          <% end %>
-        <div class="collapse navbar-collapse" id="navbar-primary">
-          <ul class="navbar-nav ml-auto">
-            <% if logged_in? %>
-              <% if current_user.admin? %>
-                <li class="nav-item">
-                  <%= link_to "ホーム画面に戻る", admin_path ,class:"nav-link"%>
-                </li>
-              <% else %>
-                <li class="nav-item">
-                  <%= link_to "ホーム画面に戻る", home_path ,class:"nav-link"%>
-                </li>
-              <% end %>
-            <% end %>
-            <li class="nav-item">
-              <%= link_to "ログアウト", logout_path, method: :delete ,class:"nav-link"%>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <%= render 'layouts/header' %>
     <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all',

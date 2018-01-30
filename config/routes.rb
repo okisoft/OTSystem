@@ -9,28 +9,15 @@ Rails.application.routes.draw do
   delete  '/logout',     to: 'sessions#destroy'
   resources :users, only: [:create, :new, :edit, :update]
   resources :students, only: [:create, :new]
-  resources :lectures, only: [:create, :new] do
-    member do
-      get 'years', to: 'lectures#lecture_years_index'
-      get 'times', to: 'lectures#lecture_times_index'
-    end
-  end
-  resources :lecture_years, only: [] do
-    member do
-      get  'new',   to: 'lecture_years#lecture_times_new',   as: 'new_times'
-      get  'times', to: 'lecture_years#lecture_times_index'
-      post 'times', to: 'lecture_years#lecture_times_create'
-    end
-  end
-  resources :lecture_times, only: [] do
-    member do
-      get 'questions', to: 'lecture_times#questions_index'
-      get 'progresses', to: 'lecture_times#progresses_index'
-      get 'problems', to: 'lecture_times#problems_index'
-      get 'public_lectures_destroy', to: 'lecture_times#public_lectures_destroy'
+  resources :lectures, only: [:create, :new, :edit, :update], shallow: true do
+    resources :lecture_years, only: [:index, :edit, :update], shallow: true do
+      resources :lecture_times, only: [:index, :edit, :update], shallow: true do
+        resources :progresses, only: [:index, :update]
+        resources :questions, only: [:index]
+      end
     end
   end
   resources :questions, only: [:create, :new, :edit, :update]
-  resources :problems, only: [:edit, :update]
-  resources :achievments, only: [:update]
+  resource :achievments, only: [:update]
+  resource :public_lecture, only: [:destroy]
 end

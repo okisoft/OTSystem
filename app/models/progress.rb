@@ -3,7 +3,7 @@ class Progress < ApplicationRecord
   belongs_to :user,         optional: true
 
   validates :icon,      numericality: {
-                          greater_than: 0,
-                          less_than: 4
+                          greater_than_or_equal_to: 0,
+                          less_than: 3
                         }
 end
