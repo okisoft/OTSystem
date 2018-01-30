@@ -1,13 +1,22 @@
 <% provide(:title, '回答入力画面') %>
-<h1>回答入力画面</h1>
+<h3>回答入力画面</h3>
 
-<div class="row">
+<div class="row justify-content-center">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@question) do |f| %>
-      <%= f.label :reply %>
-      <%= f.text_field :reply, class: 'form-control' %>
+    <div class="row justify-content-center">
+      <div class="col-md-2">
+      <%= f.label :reply ,"回答"%>
+    </div>
+  </div>
 
+      <%= f.text_field :reply, class: 'form-control' %>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-md-3">
       <%= f.submit "送信する", class: "btn btn-large btn-primary" %>
     <% end %>
+    </div>
+    </div>
   </div>
 </div>
