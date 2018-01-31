@@ -7,31 +7,17 @@
       <br>
   <div class="row justify-content-center">
       <div class="col-md-8" style="border-style: solid ; border-width: 1px; color: green;">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-              <%= link_to "質問をする", new_question_path, class: "btn btn-primary " %>
-            </div>
-            <div class="col-md-4">
-              <%= link_to "過去の質問閲覧", lecture_lecture_years_path(@lecture), id: @lecture_id, class: "btn btn-primary" %>
-            </div>
-            <div class="col-md-4">
+        <div class="row justify-content-center" style="margin-top:20px;">
+            <div class="col-md-3">
               <%= link_to "質問をする", new_question_path, class: "btn btn-primary" %>
             </div>
+            <div class="col-md-3">
+              <%= link_to "過去の質問閲覧", lecture_lecture_years_path(@lecture), id: @lecture_id, class: "btn btn-primary" %>
+            </div>
+
 
       </div>
 
-      <div class="row justify-content-center">
-          <div class="col-md-4">
-            <font size="5">カテゴリ</font>
-          </div>
-          <div class="col-md-4">
-            <font size="5">質問内容</font>
-          </div>
-          <div class="col-md-4">
-            <font size="5">回答</font>
-          </div>
-
-    </div>
 　　
     <% @problems.each do |problem| %>
       <% questions = problem.questions %>
@@ -71,6 +57,7 @@
           <label><%= f.radio_button :icon, 0 %> なし </label>
           <label><%= f.radio_button :icon, 1 %> 確認してもらう </label>
           <label><%= f.radio_button :icon, 2 %> 緊急 </label>
+          <br>
           <%= f.submit "送信する", class: "btn btn-large btn-primary" %>
         <% end %>
       </div>
