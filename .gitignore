@@ -20,3 +20,4 @@
 /vendor/bundle
 
 /config/database.yml
+.DS_Store
