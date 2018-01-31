@@ -2,35 +2,33 @@
 <h3>授業作成画面</h3>
 
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-      <%= form_for(@lecture) do |f| %>
-      <div class="form-group">
-        <div class="row justify-content-center">
-          <div class="col-md-3">
-            <%= f.label :name, "授業名"%>
-          </div>
+  <%= form_for(@lecture) do |f| %>
+    <div class="row justify-content-center">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="form-group">
+            <div class="row justify-content-center">
+              <div class="col-md-3">
+                <%= f.label :name, "授業名"%>
+              </div>
+            </div>
+            <%= f.text_field :name, class: 'form-control' %>
         </div>
-        <%= f.text_field :name, class: 'form-control' %>
-
       </div>
     </div>
-  </div>
 
-  <div class="row justify-content-center">
+    <div class="row justify-content-center">
       <div class="col-md-2">
-              <%= f.fields_for :lecture_years do |ly| %>
-                <%= ly.hidden_field :year , value: Date.today.financial_year %>
-                <%= ly.label :style, "授業形態" %>
-                <%= ly.select :style, [["個人", "個人"], ["グループ", "グループ"]], class: 'form-control' %>
-              <% end %>
+        <%= f.fields_for :lecture_years do |ly| %>
+          <%= ly.hidden_field :year , value: Date.today.financial_year %>
+          <%= ly.label :style, "授業形態" %>
+          <%= ly.select :style, [["個人", "個人"], ["グループ", "グループ"]], class: 'form-control' %>
+        <% end %>
       </div>
-  </div>
-  <div class="row justify-content-center">
+    </div>
+    <div class="row justify-content-center">
       <div class="col-md-1" >
-              <%= f.submit "決定", class: "btn btn-primary" %>
+        <%= f.submit "決定", class: "btn btn-primary" %>
       </div>
+    </div>
+  <% end %>
 </div>
-
-    <% end %>
-  </div>
