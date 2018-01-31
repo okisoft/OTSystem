@@ -43,6 +43,7 @@ gem 'jquery-rails'
 gem 'fiscali'
 
 gem "nested_form"
+gem 'unicorn'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
