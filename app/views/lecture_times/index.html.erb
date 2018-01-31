@@ -4,29 +4,21 @@
     <div class="row">
       <h3 class="page-title">授業回選択</h3>
     </div><!-- row -->
-
-    <% @lecture_times.each do |lecture_time| %>
+    <% @lecture_times.each do |lt| %>
       <li style="list-style:none;margin-bottom: 10px;">
         <div class="row justify-content-center">
-        <h5 class="time-title col-1 col-lg-1">第<%= lecture_time.time %>回</h5>
-      </div>
-        <% if @lecture_year.latest? %>
-        <div class="row justify-content-center">
-
-          <%= link_to lecture_time.title, lecture_time_progresses_path(lecture_time) ,class:"btn btn-primary btn-add col-7 col-lg-5",style:"margin-right:10px;"%>
-          <%= link_to "編集", edit_lecture_time_path(lecture_time),class:"btn btn-primary btn-add " ,style:"margin-right:10px;"%>
-
-        <% else %>
-          <%= link_to lecture_time.title, lecture_time_questions_path(lecture_time),class:"btn btn-primary btn-add " %>
-        <% end %>
-        <h6 style="margin-top:10px">課題数<%= lecture_time.problems.count %></h6>
+          <h5 class="time-title col-1 col-lg-1">第<%= lt.time %>回</h5>
+        </div>
+          <div class="row justify-content-center">
+            <% if @lecture_year.latest? %>
+              <%= link_to lt.title, lecture_time_progresses_path(lt), class: "btn btn-primary btn-add col-7 col-lg-5", style: "margin-right:10px;" %>
+              <%= link_to "編集", edit_lecture_time_path(lt), class: "btn btn-primary btn-add " , style: "margin-right:10px;" %>
+            <% else %>
+              <%= link_to lt.title, lecture_time_questions_path(lt), class: "btn btn-primary btn-add col-7 col-lg-5" %>
+            <% end %>
+            <h6 style="margin-top:10px">課題数<%= lt.problems.count %></h6>
           </div><!-- row -->
       </li>
     <% end %>
-
-
   </div><!-- content-box -->
-
-
-
 </div><!-- container-fluid -->
