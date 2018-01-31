@@ -9,6 +9,7 @@
       <%= f.label :problem_id,"課題選択" %>
     </div>
     <div class="col-md-3" style="size:50px;">
+
       <%= f.select :problem_id, problem_array, selected: problem_array[0][0], class: 'form-control' %>
 
       <%= f.hidden_field :user_id, value: current_user.id %>
