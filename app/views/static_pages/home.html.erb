@@ -50,6 +50,7 @@
       <% end %>
 </div>
 
+<<<<<<< HEAD
 <div class="col-md-4">
   <div class="row justify-content-center">
     <div class="col-md-10" style="border-style: solid ; border-width: 1px; color: green;">
@@ -94,3 +95,40 @@
       </div>
     </div>
   </div>
+=======
+<% if @problems.present? %>
+  <%= form_for @progress do |f| %>
+    <label><%= f.radio_button :icon, 0 %> なし </label>
+    <label><%= f.radio_button :icon, 1 %> 確認してもらう </label>
+    <label><%= f.radio_button :icon, 2 %> 緊急 </label>
+    <%= f.submit "送信する", class: "btn btn-large btn-primary" %>
+  <% end %>
+
+
+  <%# 質問の一覧を表示する %>
+  <% @problems.each do |problem| %>
+    <% questions = problem.questions %>
+    <% questions.each do |question| %>
+      <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
+        <li>
+          <%= question.problem.name %>
+          <%= question.user.id %>
+          <%= question.content %>
+          <%= question.reply %>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= form_tag achievments_path, method: :put do %>
+    <% @achievments.each do |achievment| %>
+      <%= fields_for "achievments[]", achievment do |f| %>
+        check:<%= f.check_box :achieved, { checked: achievment.achieved }, true, false %>
+      <% end %>
+    <% end %>
+    <%= submit_tag %>
+  <% end %>
+<% else %>
+  <h5>現在課題はありません</h5>
+<% end %>
+>>>>>>> develop

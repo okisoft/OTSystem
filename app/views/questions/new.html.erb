@@ -1,43 +1,37 @@
 <% provide(:title, '質問入力画面') %>
 <h3>質問入力画面</h3>
 
-<div class="row justify-content-center">
-  <div class="col-md-3" style="font-size:20px;">
+<% if PublicLecture.first.lecture_time.problems.present? %>
+  <div class="row justify-content-center">
     <%= form_for(@question) do |f| %>
-      <% problems = PublicLecture.first.lecture_time.problems %>
-      <% problem_array = problems.map { |p| [p.name, p.id] } %>
-      <%= f.label :problem_id,"課題選択" %>
-    </div>
-    <div class="col-md-3" style="size:50px;">
+      <div class="col-md-12" style="font-size:20px;">
+        <% problems = PublicLecture.first.lecture_time.problems %>
+        <% problem_array = problems.map { |p| [p.name, p.id] } %>
+        <%= f.label :problem_id,"課題選択" %>
+      </div>
+      <div class="col-md-12" style="size:50px;">
+        <%= f.select :problem_id, problem_array, selected: problem_array[0][0], class: 'form-control' %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+    　</div>
 
-      <%= f.select :problem_id, problem_array, selected: problem_array[0][0], class: 'form-control' %>
-
-      <%= f.hidden_field :user_id, value: current_user.id %>
-　</div>
-
-  <div class="col-md-3" style="font-size:20px;">
-    <% visibles = [['公開する', true], ['公開しない', false]] %>
-    <%= f.label :visible,"質問者名" %>
+      <div class="col-md-12" style="font-size:20px;">
+        <% visibles = [['公開する', true], ['公開しない', false]] %>
+        <%= f.label :visible,"質問者名" %>
+      </div>
+      <div class="col-md-12" >
+        <%= f.select :visible, visibles, selected: "公開する", class: 'form-control' %>
+    　</div>
+      <div class="col-md-12">
+        <%= f.label :content, "質問入力欄" %>
+      </div>
+      <div class="col-md-12" >
+        <%= f.text_area :content, class: 'form-control'%>
+      </div>
+      <div class="col-md-2">
+        <%= f.submit "送信", class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-  <div class="col-md-3" >
-    <%= f.select :visible, visibles, selected: "公開する", class: 'form-control' %>
-
-　</div>
-
-  <div class="col-md-2">
-    <%= f.label :content, "質問入力欄" %>
-　</div>
-<div class="col-md-12" >
-  <%= f.text_field :content, class: 'form-control'%>
-　</div>
-
-<div class="col-md-2">
-
-  <%= f.submit "送信", class: "btn btn-primary" %>
-
-　</div>
-</div>
+<% else %>
+  <h5>現在課題はありません</h5>
 <% end %>
-
-
-  </div>

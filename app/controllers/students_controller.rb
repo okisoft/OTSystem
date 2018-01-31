@@ -15,13 +15,6 @@ class StudentsController < ApplicationController
           user_id: current_user.id,
           icon: 0
         )
-        lt.problems.each do |prb|
-          Achievment.find_or_create_by(
-            user_id: current_user.id,
-            problem_id: prb.id,
-            achieved: false
-          )
-        end
       end
       redirect_to home_path
     end
