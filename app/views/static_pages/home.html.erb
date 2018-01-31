@@ -5,130 +5,83 @@
   <div class="row">
     <div class="col-md-12">
       <br>
-  <div class="row justify-content-center">
-      <div class="col-md-8" style="border-style: solid ; border-width: 1px; color: green;">
-        <div class="row justify-content-center" style="margin-top:20px;">
+      <div class="row justify-content-center">
+        <div class="col-md-8" style="border-style: solid ; border-width: 1px; color: green;">
+          <div class="row justify-content-center" style="margin-top:20px;">
             <div class="col-md-3">
               <%= link_to "質問をする", new_question_path, class: "btn btn-primary col-9" %>
             </div>
             <div class="col-md-3">
               <%= link_to "過去の質問閲覧", lecture_lecture_years_path(@lecture), id: @lecture_id, class: "btn btn-primary " %>
             </div>
-
-      </div>
-    <h4 class="text-center">現在の授業の質問一覧</h4>
-    <% @problems.each do |problem| %>
-      <% questions = problem.questions %>
-      <% questions.each do |question| %>
-        <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
-          <li style="list-style:none;margin-bottom: 10px;">
-            <div class="row justify-content-center" style="border: 2px solid #6bd098;
-                border-radius: 4px;
-                margin: 2em 0;
-                padding: 2em;
-                position: relative;">
-                <p style="background-color: #fff;
-                color: #6bd098;
-                font-weight: bold;
-                left: 1em;
-                padding: 0 .5em;
-                position: absolute;
-                top: -1em;">
-                <%= question.problem.name %>
-                </p>
-                <div class="col-md-5">
-                <h2 style="position:absolute;bottom:0px;right:280px;">Q</h2>
-            <%= question.content %>
           </div>
-            <div class="col-md-5" style="border-left: solid 2px #6bd098; padding-left:70px; ">
-              <h2 style="position:absolute;bottom:0px;right:215px;">A</h3>
-            <%= question.reply %>
-          </div>
-          </li>
-        <% end %>
-      <% end %>
-      <% end %>
-</div>
-
-<<<<<<< HEAD
-<div class="col-md-4">
-  <div class="row justify-content-center">
-    <div class="col-md-10" style="border-style: solid ; border-width: 1px; color: green;">
-      <h5 class="text-center">現在の状況</h5>
-      <br>
-        <%= form_for @progress do |f| %>
-          <label style="padding-left:25px;"><%= f.radio_button :icon, 0 %> なし </label>
-          <label><%= f.radio_button :icon, 1 %> 課題の確認 </label>
-          <label><%= f.radio_button :icon, 2 %> 緊急 </label>
-          <br>
-          <br>
-          <%= f.submit "送信する", class: "btn btn-large btn-primary",style:"margin-left:90px;"%>
-        <% end %>
-        <br>
-      </div>
-</div>
-<br>
-  <div class="row justify-content-center">
-    <div class="col-md-10" style="border-style: solid ; border-width: 1px; color: green;">
-      <h5 class="text-center">課題の達成状況</h5>
-      <br>
-    <ol style="padding-left:110px;">
-    <%= form_tag achievments_path, method: :put do %>
-      <% @achievments.each do |achievment| %>
-        <%= fields_for "achievments[]", achievment do |f| %>
-        <li>
-          check:<%= f.check_box :achieved %>
-        </li>
-        <% end %>
-      <% end %>
-      <br>
-      <%= submit_tag "変更の保存",class:"btn btn-large btn-primary",style:"margin-left:-26px;"%>
-      <% end %>
-    </ol>
-
-</div>
-
-
-
+          <% if @problems.present? %>
+            <h4 class="text-center">現在の授業の質問一覧</h4>
+            <% @problems.each do |problem| %>
+              <% questions = problem.questions %>
+              <% questions.each do |question| %>
+                <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
+                  <li style="list-style:none;margin-bottom: 10px;">
+                    <div class="row justify-content-center" style="border: 2px solid #6bd098; border-radius: 4px; margin: 2em 0; padding: 2em; position: relative;">
+                      <p style="background-color: #fff; color: #6bd098; font-weight: bold; left: 1em; padding: 0 .5em; position: absolute; top: -1em;">
+                        <%= question.problem.name %>
+                      </p>
+                      <div class="col-md-5">
+                        <h2 style="position:absolute;bottom:0px;right:280px;">Q</h2>
+                        <%= question.content %>
+                      </div>
+                      <div class="col-md-5" style="border-left: solid 2px #6bd098; padding-left:70px;">
+                        <h2 style="position:absolute;bottom:0px;right:215px;">A</h2>
+                        <%= question.reply %>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
+              <% end %>
+            <% end %>
+            <div class="col-md-12">
+              <div class="row justify-content-center">
+                <div class="col-md-10" style="border-style: solid ; border-width: 1px; color: green;">
+                  <h5 class="text-center">現在の状況</h5>
+                  <br>
+                  <div class="text-center">
+                    <%= form_for @progress do |f| %>
+                      <%= f.radio_button :icon, 0 %>なし
+                      <%= f.radio_button :icon, 1 %>課題の確認
+                      <%= f.radio_button :icon, 2 %>緊急
+                      <br><br>
+                      <%= f.submit "送信する", class: "btn btn-large btn-primary text-center" %>
+                    <% end %>
+                  </div>
+                  <br>
+                </div>
+              </div>
+              <br>
+              <div class="row justify-content-center">
+                <div class="col-md-10" style="border-style: solid ; border-width: 1px; color: green;">
+                  <h5 class="text-center">課題の達成状況</h5>
+                  <br>
+                  <div class="text-center">
+                    <%= form_tag achievments_path, method: :put do %>
+                      <% @achievments.each do |achievment| %>
+                        <%= fields_for "achievments[]", achievment do |f| %>
+                          check:<%= f.check_box :achieved %>
+                        <% end %>
+                      <% end %>
+                      <br><br>
+                      <%= submit_tag "変更の保存",class: "btn btn-large btn-primary"%>
+                    <% end %>
+                  </div>
+                  <br>
+                </div>
+              </div>
+              <br>
             </div>
-        </div>
+          <% else %>
+            <h4 class="text-center">現在課題はありません</h4>
+          <% end %>
+         </div>
       </div>
     </div>
   </div>
-=======
-<% if @problems.present? %>
-  <%= form_for @progress do |f| %>
-    <label><%= f.radio_button :icon, 0 %> なし </label>
-    <label><%= f.radio_button :icon, 1 %> 確認してもらう </label>
-    <label><%= f.radio_button :icon, 2 %> 緊急 </label>
-    <%= f.submit "送信する", class: "btn btn-large btn-primary" %>
-  <% end %>
-
-
-  <%# 質問の一覧を表示する %>
-  <% @problems.each do |problem| %>
-    <% questions = problem.questions %>
-    <% questions.each do |question| %>
-      <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
-        <li>
-          <%= question.problem.name %>
-          <%= question.user.id %>
-          <%= question.content %>
-          <%= question.reply %>
-        </li>
-      <% end %>
-    <% end %>
-  <% end %>
-
-  <%= form_tag achievments_path, method: :put do %>
-    <% @achievments.each do |achievment| %>
-      <%= fields_for "achievments[]", achievment do |f| %>
-        check:<%= f.check_box :achieved, { checked: achievment.achieved }, true, false %>
-      <% end %>
-    <% end %>
-    <%= submit_tag %>
-  <% end %>
-<% else %>
-  <h5>現在課題はありません</h5>
-<% end %>
->>>>>>> develop
+</div>
