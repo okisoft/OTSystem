@@ -23,8 +23,16 @@ class StaticPagesController < ApplicationController
         lecture_time = public_lecture.lecture_time
         lecture_year = lecture_time.lecture_year
         @problems = lecture_time.problems
+
+        @achievments = []
+        @problems.each do |prb|
+          @achievments << Achievment.find_or_create_by(
+            user_id: current_user.id,
+            problem_id: prb.id
+          )
+        end
+
         @progress = lecture_time.progresses.find_by(user_id: current_user.id)
-        @achievments = current_user.achievments.where(problem_id: @problems.ids)
         if current_user.lecture_years.find_by(id: lecture_year.id).nil?
           redirect_to new_student_path
         end
