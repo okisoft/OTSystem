@@ -38,15 +38,30 @@
       <% questions.each do |question| %>
         <% if current_user.admin? || question.visible %> <%# 未公開設定でも管理者は見られるように %>
           <li style="list-style:none;margin-bottom: 10px;">
-          <div class="col-md-12">
-            <%= question.problem.name %>
-            <%= question.content %><%#この辺頭こんがらかっ河ががったので一旦放置%>
+            <div class="row justify-content-center" style="border: 2px solid #6bd098;
+                border-radius: 4px;
+                margin: 2em 0;
+                padding: 2em;
+                position: relative;">
+                <p style="background-color: #fff;
+                color: #6bd098;
+                font-weight: bold;
+                left: 1em;
+                padding: 0 .5em;
+                position: absolute;
+                top: -1em;">
+                <%= question.problem.name %>
+                </p>
+                <div class="col-md-5">
+            <%= question.content %>
+          </div>
+            <div class="col-md-5" style="border-left: solid 2px #6bd098; padding-left:30px; ">
             <%= question.reply %>
           </div>
           </li>
         <% end %>
       <% end %>
-    <% end %>
+      <% end %>
 </div>
 
 <div class="col-md-4">
