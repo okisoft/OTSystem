@@ -1,15 +1,35 @@
-<% provide(:title, '管理画面') %>
-<h1>管理画面</h1>
+<% provide(:title, '管理者ホーム') %>
 
-<%= link_to "授業新規作成", new_lecture_path, class: "btn btn-primary" %>
-<%= link_to "アカウント新規登録", signup_path, class: "btn btn-primary" %>
-<%= link_to "アカウント登録情報編集", edit_user_path(current_user), class: "btn btn-primary" %>
-<%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="center">管理者ホーム</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-4" align="center">
+      <h3>授業一覧</h3>
+      <br>
+    </div>
+  </div>
 
-<% @lectures.each do |l| %>
-  <li>
-    <%= link_to l.name, lecture_year_lecture_times_path(l.latest_year) %>
-    <%= link_to "編集", edit_lecture_path(l) %>
-    <%= link_to "過去", lecture_lecture_years_path(l) %>
-  </li>
-<% end %>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-4">
+      <% @lectures.each do |l| %>
+        <li  style="list-style:none;margin-bottom: 10px;">
+            <%= link_to l.name, lecture_year_lecture_times_path(l.latest_year), class: "btn btn-primary col-5"  %>
+            <%= link_to "編集", edit_lecture_path(l), class: "btn btn-primary " %>
+            <%= link_to "過去の授業", lecture_lecture_years_path(l), class: "btn btn-primary " %>
+        </li>
+      <% end %>
+    </div>
+    <div class="col-lg-7" align="center">
+      <%= link_to "授業新規作成", new_lecture_path, class: "btn btn-primary col-7 col-lg-5 btn-lg" %>
+      <br><br>
+      <%= link_to "アカウント新規登録", signup_path, class: "btn btn-primary col-7 col-lg-5 btn-lg" %>
+      <br><br>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,30 @@
 <% provide(:title, '課題編集') %>
-<h1>授業回編集画面</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<h3>授業回編集画面</h3>
+<div class="container">
+<div class="row justify-content-center">
+  <div class="col-md-6">
     <%= nested_form_for(@lecture_time) do |f| %>
+    <div class="row justify-content-center">
+      <div class="col-md-3">
       <%= f.label :title, "授業タイトル" %>
+      </div>
+    </div>
       <%= f.text_field :title, class: 'form-control' %>
 
       <table id="problems">
         <%= f.fields_for :problems, wrapper: false %>
       </table>
-      <%= f.link_to_add "課題を追加する", :problems, data: {target: "#problems"} %>
-      <%= f.submit "Update lecture", class: "btn btn-primary" %>
+      <div class="row justify-content-center">
+        <div class="col-md-3.5">
+      <%= f.link_to_add "課題を追加する", :problems, data: {target: "#problems"},class:"btn btn-primary",style:"margin-bottom:10px;" %>
+    </div>
+  </div>
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+      <%= f.submit "確定", class: "btn btn-primary" %>
     <% end %>
   </div>
+</div>
+  </div>
+</div>
 </div>

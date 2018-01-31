@@ -1,9 +1,24 @@
 <% provide(:title, '年度選択画面') %>
-<h1>年度選択画面</h1>
 
-<% @lecture_years.each do |lecture_year| %>
-  <% next if lecture_year.latest? %>
-  <li>
-    <%= link_to lecture_year.year, lecture_year_lecture_times_path(lecture_year) %>
-  </li>
-<% end %>
+<div id="header"><!-- include header.html --></div>
+<div class="container-fluid">
+  <div class="content-box">
+
+    <h3 class="page-title" style="margin-bottom:10px;">年度選択</h3>
+
+      <% @lecture_years.each do |lecture_year| %>
+        <% next if lecture_year.latest? %>
+        <li style="list-style:none;margin-bottom: 10px;">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <%= link_to lecture_year.year, lecture_year_lecture_times_path(lecture_year),class: "btn btn-primary btn-lg col-7 col-lg-5",style:"margin-bottom:10px;"%>
+            </div>
+          </div><!-- row -->
+        </li>
+      <% end %>
+
+
+
+  </div><!-- content-box -->
+
+</div><!-- container-fluid -->

@@ -1,0 +1,44 @@
+body {
+	background-image: url("../img/background-white.jpg");
+}
+
+.text-white {
+	color: #FFFFFF;
+}
+
+header .text-white {
+	color: #FFFFFF;
+	font-weight: 550;
+  	text-shadow: 2px 2px 1px #777777;
+}
+
+.label-lg {
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.page-title {
+	float: left;
+}
+
+.content-box {
+	text-align: center;
+	margin: 10px 20px;
+}
+
+.content-box .btn-add {
+	margin: 20px 0px;
+}
+
+.contentbox .row {
+	margin: 10px 10px;
+	text-align: center;
+}
+
+.line-btns {
+	margin: 25px 50px;
+}
+
+.line-btn {
+	margin: 5px 5px;
+}
