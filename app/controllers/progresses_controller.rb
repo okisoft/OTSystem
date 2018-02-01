@@ -1,9 +1,6 @@
 class ProgressesController < ApplicationController
   def index
     @lecture_time = LectureTime.find(params[:lecture_time_id])
-    @users = @lecture_time.lecture_year.users
-    @problems = @lecture_time.problems
-
     #publicの更新
     public_lecture = PublicLecture.first
     if public_lecture.nil?
@@ -19,6 +16,8 @@ class ProgressesController < ApplicationController
         lecture_time_id: @lecture_time.id
       )
     end
+    @problems = @lecture_time.problems
+    @users = @lecture_time.lecture_year.users
   end
 
   def update

@@ -6,11 +6,11 @@
   <div class="col-md-6 col-md-offset-3">
     <%= link_to "授業終了",  public_lecture_path, method: :delete, class: "btn btn-primary ",style:"margin-bottom:10px;margin-right:10px;"  %>
     <%= link_to "質問一覧", lecture_time_questions_path(@lecture_time), class: "btn btn-primary",style:"margin-bottom:10px;" %>
-</div>
+  </div>
 </div>
 <br>
 <div class="row">
-<div class="col-md-6 col-md-offset-3">
+  <div class="col-md-6 col-md-offset-3">
     <table border="1"  cellpadding="5" bordercolor="#333333">
       <tr bgcolor="#8fe08f" style="color:#ffffff;">
         <td width="300" align="center">ユーザID</td>
@@ -19,7 +19,7 @@
           <td width="70" align="center">課題<%= i+1 %></td>
         <% end %>
         <td width="80" align="center">状態</td>
-          <td width="80" align="center">質問</td>
+        <td width="80" align="center">質問</td>
       </tr>
       <% @users.each do |user| %>
         <tr bgcolor="#efffef" >

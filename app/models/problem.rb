@@ -9,6 +9,6 @@ class Problem < ApplicationRecord
   validates :content,   length: { maximum: 512}
 
   def achievment?(user)
-    self.achievments.find_by(user_id: user.id).achieved
+    self.achievments.find_or_create_by(user_id: user.id).achieved
   end
 end
