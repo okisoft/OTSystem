@@ -26,9 +26,23 @@
           <td width="300" align="center"><%= user.user_id %></td>
           <td width="300" align="center"><%= user.name %></td>
           <% @problems.each do |problem| %>
-            <td width="150" align="center"><%= problem.achievment?(user) %></td> <%# 達成状況を表示 %>
+            <td width="150" align="center">
+            <% if problem.achievment?(user) %>
+              <%= image_tag "achieved_icon.png", :size => '20x20'%>
+            <% else %>
+              <%= "" %>
+            <% end %>
+            </td> <%# 達成状況を表示 %>
           <% end %>
-          <td width="100" align="center"><%= user.icon(@lecture_time) %></td> <%# アイコン表示 %>
+          <td width="100" align="center">
+          <% if user.icon(@lecture_time) == 0 %>
+            <%= "" %>
+          <% elsif user.icon(@lecture_time) == 1%>
+            <%= image_tag "emergency_icon.png", :size => '30x30'%>
+          <% elsif user.icon(@lecture_time) == 2%>
+            <%= image_tag "check_plz_icon.png", :size => '30x30'%>
+          <% end %>
+          </td> <%# アイコン表示 %>
           <td width="100" align="center"><%= user.count_not_reply_question(@problems) %></td> <%# 未回答の質問数を表示 %>
         </tr>
       <% end %>
