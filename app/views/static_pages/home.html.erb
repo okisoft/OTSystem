@@ -8,10 +8,10 @@
       <div class="row justify-content-center">
         <div class="col-md-8" style="border-style: solid ; border-width: 1px; color: green;">
           <div class="row justify-content-center" style="margin-top:20px;">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-3 col-xs-6">
               <%= link_to "質問をする", new_question_path, class: "btn btn-primary col-9" %>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-3 col-xs-6">
               <%= link_to "過去の質問閲覧", lecture_lecture_years_path(@lecture), id: @lecture_id, class: "btn btn-primary " %>
             </div>
           </div>
@@ -26,12 +26,16 @@
                       <p style="background-color: #fff; color: #6bd098; font-weight: bold; left: 1em; padding: 0 .5em; position: absolute; top: -1em;">
                         <%= question.problem.name %>
                       </p>
-                      <div class="col-md-5">
-                        <h2 style="position:absolute;bottom:0px;right:280px;">Q</h2>
+                      <div class ="col-md-1 col-xs-2 col-sm-2">
+                        <font size=7>Q</font>
+                      </div>
+                      <div class="col-md-5 col-xs-12 col-sm-12">
                         <%= question.content %>
                       </div>
-                      <div class="col-md-5" style="border-left: solid 2px #6bd098; padding-left:70px;">
-                        <h2 style="position:absolute;bottom:0px;right:215px;">A</h2>
+                      <div class ="col-md-1 col-xs-2 col-sm-2" style="border-left: solid 2px #6bd098;">
+                        <font size=7>A</font>
+                      </div>
+                      <div class="col-md-5 col-xs-12 col-sm-12">
                         <%= question.reply %>
                       </div>
                     </div>
