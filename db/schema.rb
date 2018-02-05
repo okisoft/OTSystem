@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180115062512) do
 
-  create_table "achievments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "achievments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "user_id"
     t.bigint "problem_id"
     t.boolean "achieved", default: false
@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 20180115062512) do
     t.index ["user_id"], name: "index_achievments_on_user_id"
   end
 
-  create_table "group_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "group_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
   end
 
-  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
   end
 
-  create_table "lecture_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lecture_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "lecture_year_id", null: false
     t.integer "time", default: 1
     t.string "title"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20180115062512) do
     t.index ["lecture_year_id"], name: "index_lecture_times_on_lecture_year_id"
   end
 
-  create_table "lecture_years", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lecture_years", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "lecture_id", null: false
     t.integer "year", null: false
     t.string "style", null: false
@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(version: 20180115062512) do
     t.index ["lecture_id"], name: "index_lecture_years_on_lecture_id"
   end
 
-  create_table "lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "problems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "problems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "lecture_time_id"
     t.string "name"
     t.text "content"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20180115062512) do
     t.index ["lecture_time_id"], name: "index_problems_on_lecture_time_id"
   end
 
-  create_table "progresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "progresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "lecture_time_id"
     t.bigint "user_id"
     t.integer "icon"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20180115062512) do
     t.index ["user_id"], name: "index_progresses_on_user_id"
   end
 
-  create_table "public_lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "public_lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "user_id"
     t.bigint "lecture_id"
     t.bigint "lecture_time_id"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20180115062512) do
     t.index ["user_id"], name: "index_public_lectures_on_user_id"
   end
 
-  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "problem_id"
     t.bigint "user_id"
     t.text "content"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20180115062512) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
-  create_table "students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "user_id", null: false
     t.bigint "lecture_year_id", null: false
     t.datetime "created_at", null: false
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20180115062512) do
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "user_id", null: false
     t.string "name", null: false
     t.integer "authority", null: false
